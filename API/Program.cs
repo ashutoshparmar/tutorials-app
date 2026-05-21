@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .AllowAnyOrigin()
+                .WithOrigins("https://tutorials-app-dun.vercel.app/")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });

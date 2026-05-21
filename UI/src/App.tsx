@@ -212,7 +212,7 @@ function App() {
     JSON.parse(text);
 
     const response = await fetch(
-      "http://localhost:5241/api/git/update",
+      "https://tutorials-app-nlyu.onrender.com/api/git/update",
       {
         method: "POST",
         headers: {
