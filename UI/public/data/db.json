@@ -1,0 +1,269 @@
+{
+  "users": [
+    {
+      "id": "admin",
+      "name": "Ashutosh",
+      "role": "admin",
+      "password": "admin123"
+    },
+    {
+      "id": "readonly",
+      "name": "Read Only User",
+      "role": "readonly",
+      "password": "reader123"
+    }
+  ],
+  "courses": [
+    {
+      "id": "react",
+      "title": "React",
+      "topics": [
+        {
+          "id": "jsx",
+          "title": "JSX",
+          "content": "JSX is a syntax extension that looks like HTML and works inside JavaScript. It allows you to describe the UI structure in a familiar way while still using JavaScript expressions.",
+          "example": "function Greeting() { return <h1>Hello, Ashutosh!</h1>; }",
+          "questions": [
+            {
+              "id": "react-jsx-q1",
+              "question": "What is JSX?",
+              "answer": "JSX is a syntax extension for JavaScript used in React to describe UI structure with HTML-like syntax."
+            },
+            {
+              "id": "react-jsx-q2",
+              "question": "Can JSX contain JavaScript expressions?",
+              "answer": "Yes, you can include JavaScript expressions inside JSX using curly braces, such as {user.name}."
+            },
+            {
+              "id": "q-1779266966370",
+              "question": "test",
+              "answer": "testu"
+            }
+          ]
+        },
+        {
+          "id": "components",
+          "title": "Components",
+          "content": "React components are reusable pieces of UI. A component can be a function that returns JSX, making it easy to build complex interfaces from simple building blocks.",
+          "example": "function Welcome(props) { return <h1>Hello, {props.name}</h1>; }",
+          "questions": [
+            {
+              "id": "react-components-q1",
+              "question": "What is a React component?",
+              "answer": "A React component is a reusable UI element that can be defined as a function or class and returns JSX."
+            },
+            {
+              "id": "react-components-q2",
+              "question": "What is the difference between function and class components?",
+              "answer": "Function components are simpler and support hooks, while class components use lifecycle methods and state with this.state. Modern React prefers function components."
+            }
+          ]
+        },
+        {
+          "id": "props",
+          "title": "Props",
+          "content": "Props are inputs passed from a parent component to a child. They are read-only and allow components to receive dynamic data and render it accordingly.",
+          "example": "function Greeting(props) { return <h1>Hello, {props.name}</h1>; }",
+          "questions": [
+            {
+              "id": "react-props-q1",
+              "question": "What are props in React?",
+              "answer": "Props are read-only values passed from a parent component to a child component to configure it."
+            },
+            {
+              "id": "react-props-q2",
+              "question": "Can props be modified inside a component?",
+              "answer": "No, props are immutable inside the receiving component and should not be changed."
+            }
+          ]
+        },
+        {
+          "id": "state",
+          "title": "State",
+          "content": "State is internal component data that can change over time. Updating state causes React to re-render the component with the new values.",
+          "example": "function Counter() { const [count, setCount] = useState(0); return <button onClick={() => setCount(count + 1)}>{count}</button>; }",
+          "questions": [
+            {
+              "id": "react-state-q1",
+              "question": "What is state in React?",
+              "answer": "State is internal data managed by a component that can change over time and drives re-rendering."
+            },
+            {
+              "id": "react-state-q2",
+              "question": "How do you update state in a functional component?",
+              "answer": "Use the setter function returned by useState, such as setCount(newValue)."
+            }
+          ]
+        },
+        {
+          "id": "event-handling",
+          "title": "Event Handling",
+          "content": "React handles events with camelCase props like onClick and onChange. You pass event handler functions to respond when the user interacts with the UI.",
+          "example": "function Button() { const handleClick = () => alert('Clicked!'); return <button onClick={handleClick}>Click me</button>; }",
+          "questions": [
+            {
+              "id": "react-event-q1",
+              "question": "How do you handle events in React?",
+              "answer": "Use event handler props like onClick or onChange and pass a function reference to them."
+            },
+            {
+              "id": "react-event-q2",
+              "question": "Why is the event name camelCase in React?",
+              "answer": "React uses camelCase for event handlers to match JavaScript naming conventions."
+            }
+          ]
+        },
+        {
+          "id": "useeffect",
+          "title": "useEffect",
+          "content": "useEffect runs code after the component renders. It is used for side effects such as fetching data, updating the DOM, or subscribing to events.",
+          "example": "useEffect(() => { document.title = `Count: ${count}`; }, [count]);",
+          "questions": [
+            {
+              "id": "react-useeffect-q1",
+              "question": "What does useEffect do?",
+              "answer": "useEffect runs side effects after render and can clean up when dependencies change or the component unmounts."
+            },
+            {
+              "id": "react-useeffect-q2",
+              "question": "When does useEffect run?",
+              "answer": "It runs after the component renders and whenever its dependency array values change."
+            }
+          ]
+        },
+        {
+          "id": "usestate",
+          "title": "useState",
+          "content": "useState lets functional components have local state. It returns a state value and a setter function to update that value.",
+          "example": "const [count, setCount] = useState(0);",
+          "questions": [
+            {
+              "id": "react-usestate-q1",
+              "question": "What does useState return?",
+              "answer": "useState returns a state value and a setter function to update it."
+            },
+            {
+              "id": "react-usestate-q2",
+              "question": "Can you update state directly?",
+              "answer": "No, you should use the setter function returned by useState rather than mutating the state directly."
+            }
+          ]
+        },
+        {
+          "id": "usereducer",
+          "title": "useReducer",
+          "content": "useReducer is a hook for managing complex state logic. It is useful when the next state depends on the previous state or when handling multiple state values together.",
+          "example": "const [state, dispatch] = useReducer(reducer, initialState);",
+          "questions": [
+            {
+              "id": "react-usereducer-q1",
+              "question": "When should you use useReducer?",
+              "answer": "Use useReducer for complex state logic or when state transitions are easier to express with actions and a reducer."
+            },
+            {
+              "id": "react-usereducer-q2",
+              "question": "What are the two values returned by useReducer?",
+              "answer": "It returns the current state and a dispatch function to send actions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dotnet",
+      "title": "Dot Net",
+      "topics": [
+        {
+          "id": "dotnet-overview",
+          "title": "Dot Net Overview",
+          "content": "The .NET platform is a developer platform for building many types of applications. It supports languages like C#, F#, and Visual Basic.",
+          "example": "using System;\nclass Program { static void Main() { Console.WriteLine(\"Hello from .NET\"); } }",
+          "questions": [
+            {
+              "id": "dotnet-overview-q1",
+              "question": "What is .NET?",
+              "answer": ".NET is a free, cross-platform, open source developer platform for building many types of applications."
+            }
+          ]
+        },
+        {
+          "id": "dotnet-runtime",
+          "title": "Runtime and Framework",
+          "content": "The .NET runtime executes managed code and includes services like garbage collection and assembly loading.",
+          "example": "// .NET code compiled to IL runs on the CLR runtime.",
+          "questions": [
+            {
+              "id": "dotnet-runtime-q1",
+              "question": "What is the CLR in .NET?",
+              "answer": "The CLR is the Common Language Runtime that executes managed .NET code and provides services such as garbage collection."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dotnet-core",
+      "title": "Dot Net Core",
+      "topics": [
+        {
+          "id": "dotnetcore-crossplatform",
+          "title": "Cross-platform .NET Core",
+          "content": ".NET Core is a cross-platform implementation of .NET that runs on Windows, Linux, and macOS.",
+          "example": "dotnet new console -n MyApp\ndotnet run --project MyApp",
+          "questions": [
+            {
+              "id": "dotnetcore-crossplatform-q1",
+              "question": "What is .NET Core?",
+              "answer": ".NET Core is a cross-platform implementation of .NET for building console, web, and cloud apps."
+            }
+          ]
+        },
+        {
+          "id": "dotnetcore-performance",
+          "title": "Performance and Deployment",
+          "content": ".NET Core is optimized for performance and supports lightweight deployment models like self-contained and framework-dependent apps.",
+          "example": "Publish with dotnet publish -c Release to create distributable app files.",
+          "questions": [
+            {
+              "id": "dotnetcore-performance-q1",
+              "question": "How do you publish a .NET Core app?",
+              "answer": "Use dotnet publish -c Release to create deployable output for your app."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "title": "API",
+      "topics": [
+        {
+          "id": "api-basics",
+          "title": "API Basics",
+          "content": "An API is a set of rules that lets different software systems communicate with each other.",
+          "example": "GET /api/products returns a list of product data in JSON format.",
+          "questions": [
+            {
+              "id": "api-basics-q1",
+              "question": "What is an API?",
+              "answer": "An API is an application programming interface that allows applications to talk to each other."
+            }
+          ]
+        },
+        {
+          "id": "api-restful",
+          "title": "RESTful API Design",
+          "content": "RESTful APIs use HTTP verbs like GET, POST, PUT, and DELETE to manage resources.",
+          "example": "POST /api/users with user data creates a new user record.",
+          "questions": [
+            {
+              "id": "api-restful-q1",
+              "question": "What does REST stand for?",
+              "answer": "REST stands for Representational State Transfer and is a common pattern for designing web APIs."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
