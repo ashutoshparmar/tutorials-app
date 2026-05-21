@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MyTutorialAPI.Models;
 using MyTutorialAPI.Services;
 
 namespace MyTutorialAPI.Controllers
@@ -16,15 +17,20 @@ namespace MyTutorialAPI.Controllers
 
         [HttpPost("update")]
         public async Task<IActionResult> UpdateJson(
-            [FromBody] object data)
+            [FromBody] DatabaseDto data)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var json =
                 System.Text.Json.JsonSerializer.Serialize(data);
 
             var result =
                 await _gitService.UpdateJsonFile(json);
 
-            return Ok(result);
+            return Ok(new { message = "Database updated successfully!", details = result });
         }
     }
 }
