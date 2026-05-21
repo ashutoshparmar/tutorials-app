@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { ChangeEvent } from 'react';
-import type { Course, Database, InterviewQuestion, Topic, User } from './types';
+import type { Course, Database, User } from './types';
+import { Header } from './components/Header';
+import { AdminSignIn } from './components/AdminSignIn';
+import { CourseTabs } from './components/CourseTabs';
+import { TopicSidebar } from './components/TopicSidebar';
+import { ContentArea } from './components/ContentArea';
+import { QuestionsPanel } from './components/QuestionsPanel';
 
 const STORAGE_VERSION = 2;
 const STORAGE_KEY = `tutorial-app-db-v${STORAGE_VERSION}`;
@@ -61,12 +66,28 @@ function App() {
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [importError, setImportError] = useState('');
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [route, setRoute] = useState(() => {
     const hash = window.location.hash.slice(1);
     return hash === '/admin' ? '/admin' : '/';
   });
   const [showTopics, setShowTopics] = useState(true);
+
+  // Dark Mode State
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => setIsDarkMode((prev) => !prev);
 
   useEffect(() => {
     let mounted = true;
@@ -157,80 +178,49 @@ function App() {
     URL.revokeObjectURL(url);
   };
 
-  const handleImport = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setImportError('');
     const file = event.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const text = reader.result;
-        if (typeof text !== 'string') {
-          throw new Error('File content could not be read as text.');
-        }
+    try {
+      const text = await file.text();
+      // Validate local JSON syntax
+      const parsedDb = JSON.parse(text);
 
-        const importedData = JSON.parse(text);
-        if (!importedData || !Array.isArray(importedData.users) || !Array.isArray(importedData.courses)) {
-          throw new Error('Invalid db.json format.');
-        }
+      if (!parsedDb || !Array.isArray(parsedDb.users) || !Array.isArray(parsedDb.courses)) {
+        throw new Error("Uploaded database is missing 'users' or 'courses' sections.");
+      }
 
-        setDb(importedData as Database);
-        setImportError('');
-        setSelectedCourseId(importedData.courses[0]?.id || '');
-        setSelectedTopicId(importedData.courses[0]?.topics[0]?.id || '');
-      } catch (error) {
-        setImportError(
-          error instanceof Error ? `Failed to import db.json: ${error.message}` : 'Failed to import db.json.'
-        );
-      } finally {
-        if (fileInputRef.current) {
-          fileInputRef.current.value = '';
+      // POST to standard API endpoint which performs strong type validation
+      const response = await fetch(
+        "https://tutorials-app-nlyu.onrender.com/api/git/update",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(parsedDb),
         }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `Backend responded with status code: ${response.status}`);
       }
-    };
-    reader.onerror = () => {
-      setImportError('Failed to read the selected file.');
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
-    };
-    reader.readAsText(file, 'UTF-8');
+
+      const result = await response.json();
+      alert(result.message || "Database uploaded and validated successfully!");
+
+      setDb(parsedDb as Database);
+      setSelectedCourseId(parsedDb.courses[0]?.id || '');
+      setSelectedTopicId(parsedDb.courses[0]?.topics[0]?.id || '');
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : "Network error uploading database.";
+      setImportError(msg);
+      alert(`Upload failed: ${msg}`);
+    }
   };
-
-  const handleUpload = async (
-  event: React.ChangeEvent<HTMLInputElement>
-) => {
-  const file = event.target.files?.[0];
-
-  if (!file) return;
-
-  try {
-    const text = await file.text();
-
-    // Validate JSON
-    JSON.parse(text);
-//Change URL
-    const response = await fetch(
-      "https://tutorials-app-nlyu.onrender.com/api/git/update",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          content: text,
-        }),
-      }
-    );
-
-    const result = await response.json();
-
-    alert(result.message);
-  } catch (error) {
-    alert("Invalid JSON");
-  }
-};
 
   const setCourse = (courseId: string) => {
     setSelectedCourseId(courseId);
@@ -390,298 +380,103 @@ function App() {
     }
   };
 
+  const hasPrev = useMemo(() => {
+    if (!selectedCourse || !selectedTopic) return false;
+    const idx = selectedCourse.topics.findIndex((topic) => topic.id === selectedTopic.id);
+    return idx > 0;
+  }, [selectedCourse, selectedTopic]);
+
+  const hasNext = useMemo(() => {
+    if (!selectedCourse || !selectedTopic) return false;
+    const idx = selectedCourse.topics.findIndex((topic) => topic.id === selectedTopic.id);
+    return idx >= 0 && idx < selectedCourse.topics.length - 1;
+  }, [selectedCourse, selectedTopic]);
+
+  // If Admin route and not signed in
   if (isAdminRoute && !activeUser) {
     return (
-      <div className="login-screen">
-        <div className="login-card panel">
-          <div className="login-logo">A</div>
-          <h1>Admin sign-in</h1>
-          <p className="muted">Sign in to access editing features. Browse the tutorials without signing in.</p>
-
-          <div className="login-form">
-            <label htmlFor="user-select">Select user</label>
-            <select
-              id="user-select"
-              value={loginUserId}
-              onChange={(e) => {
-                setLoginUserId(e.target.value);
-                setLoginError('');
-              }}
-            >
-              {db.users
-                .filter((user) => user.role === 'admin')
-                .map((user) => (
-                  <option key={user.id} value={user.id}>
-                    {user.name} ({user.role})
-                  </option>
-                ))}
-            </select>
-
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Enter password"
-              value={loginPassword}
-              onChange={(e) => {
-                setLoginPassword(e.target.value);
-                setLoginError('');
-              }}
-            />
-
-            <div className="login-actions">
-              <button className="primary" onClick={handleLogin}>
-                Sign in
-              </button>
-              <button type="button" className="secondary" onClick={() => navigateTo('/')}>Browse tutorials</button>
-            </div>
-            {loginError && <div className="login-error">{loginError}</div>}
-          </div>
-        </div>
-      </div>
+      <AdminSignIn
+        users={db.users}
+        loginUserId={loginUserId}
+        setLoginUserId={setLoginUserId}
+        loginPassword={loginPassword}
+        setLoginPassword={setLoginPassword}
+        loginError={loginError}
+        handleLogin={handleLogin}
+        navigateTo={navigateTo}
+      />
     );
   }
 
   return (
     <div className="app-shell">
-      <header className="top-bar">
-        <div className="brand">
-          <strong>My Tutorials</strong>
-        </div>
-        {isAdmin && (
-          <div className="route-links">
-            <button className={route === '/' ? 'active' : ''} onClick={() => navigateTo('/')}>Browse</button>
-            <button className={route === '/admin' ? 'active' : ''} onClick={() => navigateTo('/admin')}>Admin</button>
-          </div>
-        )}
-        <div className="login-panel">
-          {activeUser ? (
-            <div className="user-badge">
-              <span>Signed in as {activeUser.name}</span>
-              <span className="role-tag">{activeUser.role.toUpperCase()}</span>
-              <button
-                onClick={() => {
-                  setActiveUser(null);
-                  setLoginPassword('');
-                  setLoginError('');
-                  navigateTo('/');
-                }}
-              >
-                Sign out
-              </button>
-            </div>
-          ) : (
-            <button className="admin-link" onClick={() => navigateTo('/admin')}>
-              Admin sign in
-            </button>
-          )}
-        </div>
-      </header>
+      <Header
+        activeUser={activeUser}
+        isAdmin={isAdmin}
+        route={route}
+        navigateTo={navigateTo}
+        onSignOut={() => {
+          setActiveUser(null);
+          setLoginPassword('');
+          setLoginError('');
+          navigateTo('/');
+        }}
+        isDarkMode={isDarkMode}
+        toggleDarkMode={toggleDarkMode}
+      />
 
-      <section className="course-bar">
-        <div className="course-tabs">
-          {db.courses.map((course) => (
-            <button
-              key={course.id}
-              className={course.id === selectedCourse?.id ? 'active' : ''}
-              onClick={() => setCourse(course.id)}
-            >
-              {course.title}
-            </button>
-          ))}
-        </div>
-        {canEdit && (
-          <div className="admin-panel add-course-inline">
-            <input
-              value={newCourseTitle}
-              onChange={(e) => setNewCourseTitle(e.target.value)}
-              placeholder="New course title"
-            />
-            <button onClick={addCourse}>Add course</button>
-            <button onClick={handleExport}>Export db.json</button>
-            <button
-              onClick={() => {
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = '';
-                  fileInputRef.current.click();
-                }
-              }}
-            >
-              Import db.json
-            </button>
-            <input
-              ref={fileInputRef}
-              id="db-import-file"
-              type="file"
-              accept="application/json"
-              style={{ display: 'none' }}
-              onChange={handleUpload}
-            />
-            {importError && <div className="import-error">{importError}</div>}
-          </div>
-        )}
-      </section>
+      <CourseTabs
+        courses={db.courses}
+        selectedCourseId={selectedCourseId}
+        setCourse={setCourse}
+        canEdit={canEdit}
+        newCourseTitle={newCourseTitle}
+        setNewCourseTitle={setNewCourseTitle}
+        addCourse={addCourse}
+        handleExport={handleExport}
+        handleUpload={handleUpload}
+        importError={importError}
+      />
 
       <main className="layout-grid">
-        <aside className="panel nav-panel">
-          <div className="nav-header">
-            <h2>Course Contents</h2>
-            <button className="hamburger-button" onClick={() => setShowTopics((current) => !current)}>
-              <span className="hamburger-icon">☰</span>
-              <span>{showTopics ? 'Hide topics' : 'Show topics'}</span>
-            </button>
-          </div>
-          {selectedCourse?.topics.length ? (
-            showTopics ? (
-              <ul>
-              {selectedCourse.topics.map((topic, index) => (
-                <li key={topic.id}>
-                  <button
-                    className={topic.id === selectedTopic?.id ? 'active' : ''}
-                    onClick={() => setSelectedTopicId(topic.id)}
-                  >
-                    {topic.title}
-                  </button>
-                  {canEdit && (
-                    <div className="topic-actions">
-                      <button
-                        className="move-button"
-                        disabled={index === 0}
-                        onClick={() => moveTopic(topic.id, 'up')}
-                        title="Move up"
-                      >
-                        ↑
-                      </button>
-                      <button
-                        className="move-button"
-                        disabled={index === selectedCourse.topics.length - 1}
-                        onClick={() => moveTopic(topic.id, 'down')}
-                        title="Move down"
-                      >
-                        ↓
-                      </button>
-                      <button className="remove-button" onClick={() => removeTopic(topic.id)}>
-                        Remove
-                      </button>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-            ) : (
-              <div className="topics-collapsed">
-                <p>Topics are hidden. Tap the menu to show them.</p>
-              </div>
-            )
-          ) : (
-            <p>No topics yet. Add one with the admin controls below.</p>
-          )}
+        <TopicSidebar
+          selectedCourse={selectedCourse}
+          selectedTopicId={selectedTopicId}
+          setSelectedTopicId={setSelectedTopicId}
+          canEdit={canEdit}
+          showTopics={showTopics}
+          setShowTopics={setShowTopics}
+          moveTopic={moveTopic}
+          removeTopic={removeTopic}
+          newTopicTitle={newTopicTitle}
+          setNewTopicTitle={setNewTopicTitle}
+          newTopicContent={newTopicContent}
+          setNewTopicContent={setNewTopicContent}
+          newTopicExample={newTopicExample}
+          setNewTopicExample={setNewTopicExample}
+          addTopic={addTopic}
+        />
 
-          {canEdit && (
-            <div className="admin-panel">
-              <h3>Add topic</h3>
-              <input
-                value={newTopicTitle}
-                onChange={(e) => setNewTopicTitle(e.target.value)}
-                placeholder="Topic title"
-              />
-              <textarea
-                value={newTopicContent}
-                onChange={(e) => setNewTopicContent(e.target.value)}
-                placeholder="Topic content"
-              />
-              <textarea
-                value={newTopicExample}
-                onChange={(e) => setNewTopicExample(e.target.value)}
-                placeholder="Topic example"
-              />
-              <button onClick={addTopic}>Add topic</button>
-            </div>
-          )}
-        </aside>
+        <ContentArea
+          selectedCourse={selectedCourse}
+          selectedTopic={selectedTopic}
+          canEdit={canEdit}
+          updateTopicContent={updateTopicContent}
+          navigateTopic={navigateTopic}
+          hasPrev={hasPrev}
+          hasNext={hasNext}
+        />
 
-        <section className="panel content-panel">
-          <div className="content-header">
-            <h2>{selectedTopic?.title || 'Select a topic'}</h2>
-            <div className="course-meta">Course: {selectedCourse?.title}</div>
-          </div>
-          {selectedTopic ? (
-            <>
-              <div className="content-block">
-                <h3>Explanation</h3>
-                {canEdit ? (
-                  <textarea
-                    className="edit-area"
-                    value={selectedTopic.content}
-                    onChange={(e) => updateTopicContent('content', e.target.value)}
-                  />
-                ) : (
-                  <p>{selectedTopic.content}</p>
-                )}
-              </div>
-              <div className="content-block">
-                <h3>Example</h3>
-                {canEdit ? (
-                  <textarea
-                    className="edit-area"
-                    value={selectedTopic.example}
-                    onChange={(e) => updateTopicContent('example', e.target.value)}
-                  />
-                ) : (
-                  <pre>{selectedTopic.example}</pre>
-                )}
-              </div>
-            </>
-          ) : (
-            <p>Select a topic to see the full explanation and example.</p>
-          )}
-          <div className="pager-controls">
-            <button onClick={() => navigateTopic('prev')} disabled={!selectedCourse || selectedCourse.topics.findIndex((t) => t.id === selectedTopic?.id) <= 0}>
-              Prev
-            </button>
-            <button onClick={() => navigateTopic('next')} disabled={!selectedCourse || selectedCourse.topics.findIndex((t) => t.id === selectedTopic?.id) >= (selectedCourse.topics.length - 1)}>
-              Next
-            </button>
-          </div>
-        </section>
-
-        <aside className="panel question-panel">
-          <h2>Interview Questions</h2>
-          {selectedTopic?.questions.length ? (
-            <ul>
-              {selectedTopic.questions.map((question) => (
-                <li key={question.id}>
-                  <strong>{question.question}</strong>
-                  <p>{question.answer}</p>
-                  {canEdit && (
-                    <button className="remove-button" onClick={() => removeQuestion(question.id)}>
-                      Remove
-                    </button>
-                  )}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No questions yet for this topic. Add one with admin controls below.</p>
-          )}
-
-          {canEdit && (
-            <div className="admin-panel">
-              <h3>Add question</h3>
-              <input
-                value={newQuestionText}
-                onChange={(e) => setNewQuestionText(e.target.value)}
-                placeholder="Question text"
-              />
-              <textarea
-                value={newAnswerText}
-                onChange={(e) => setNewAnswerText(e.target.value)}
-                placeholder="Answer text"
-              />
-              <button onClick={addQuestion}>Add question</button>
-            </div>
-          )}
-        </aside>
+        <QuestionsPanel
+          selectedTopic={selectedTopic}
+          canEdit={canEdit}
+          newQuestionText={newQuestionText}
+          setNewQuestionText={setNewQuestionText}
+          newAnswerText={newAnswerText}
+          setNewAnswerText={setNewAnswerText}
+          addQuestion={addQuestion}
+          removeQuestion={removeQuestion}
+        />
       </main>
     </div>
   );
