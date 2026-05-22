@@ -6,7 +6,7 @@ import { CourseTabs } from './components/CourseTabs';
 import { TopicSidebar } from './components/TopicSidebar';
 import { ContentArea } from './components/ContentArea';
 import { QuestionsPanel } from './components/QuestionsPanel';
-
+//new commit
 const STORAGE_VERSION = 2;
 const STORAGE_KEY = `tutorial-app-db-v${STORAGE_VERSION}`;
 const OLD_STORAGE_KEYS = ['tutorial-app-db', 'tutorial-app-db-v1'];
