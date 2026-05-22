@@ -53,7 +53,8 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>1. Definition</h3>
+            <h3>1️⃣ What Is It?</h3>
+            <p className="section-hint">A clear explanation of the core concept</p>
             {canEdit ? (
               <textarea
                 className="edit-area"
@@ -70,7 +71,8 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>2. Why do we need it?</h3>
+            <h3>2️⃣ Why Is It Important?</h3>
+            <p className="section-hint">When and why you should use this</p>
             {canEdit ? (
               <textarea
                 className="edit-area"
@@ -87,7 +89,8 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>3. Problem it solves</h3>
+            <h3>3️⃣ The Problem It Solves</h3>
+            <p className="section-hint">What challenge or pain point does this address?</p>
             {canEdit ? (
               <textarea
                 className="edit-area"
@@ -104,7 +107,8 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>4. Real-world example</h3>
+            <h3>4️⃣ Real-World Scenario</h3>
+            <p className="section-hint">How is this used in practice?</p>
             {canEdit ? (
               <textarea
                 className="edit-area"
@@ -121,7 +125,8 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>5. Syntax</h3>
+            <h3>5️⃣ Syntax & Structure</h3>
+            <p className="section-hint">How to write or use it</p>
             {canEdit ? (
               <textarea
                 className="edit-area code-font"
@@ -138,7 +143,8 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>6. Practical example</h3>
+            <h3>6️⃣ Complete Code Example</h3>
+            <p className="section-hint">A working implementation</p>
             {canEdit ? (
               <textarea
                 className="edit-area code-font"
@@ -155,7 +161,8 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>7. Common mistakes</h3>
+            <h3>7️⃣ Common Pitfalls</h3>
+            <p className="section-hint">Mistakes to avoid and best practices</p>
             {canEdit ? (
               <textarea
                 className="edit-area"

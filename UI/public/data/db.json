@@ -288,7 +288,7 @@
           "definition": "useReducer manages complex component state using a reducer function and actions.",
           "why": "It keeps state updates predictable when many values or actions are involved.",
           "problem": "Without useReducer, complex state logic can become hard to manage with useState.",
-          "realWorldExample": "A shopping cart where adding, removing, and clearing items are handled by actions.",
+          "realWorldExample": "Example: An e-commerce application uses useReducer to manage shopping cart actions like add item, remove item, and quantity updates.",
           "syntax": "const [state, dispatch] = useReducer(reducer, initialState);",
           "practicalExample": "import { useReducer } from 'react';\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case 'increment': return { count: state.count + 1 };\n    case 'decrement': return { count: state.count - 1 };\n    default: throw new Error();\n  }\n}\n\nfunction Counter() {\n  const [state, dispatch] = useReducer(reducer, { count: 0 });\n  return (\n    <button onClick={() => dispatch({ type: 'increment' })}>\n      Count is: {state.count}\n    </button>\n  );\n}",
           "commonMistakes": "Mutating state directly inside the reducer or using inconsistent action shapes are common issues."
@@ -313,7 +313,7 @@
           "definition": "useContext allows components to access shared data without passing props through every level.",
           "why": "It simplifies prop passing for data like themes, user info, or settings.",
           "problem": "Without context, you might need deep prop drilling across many components.",
-          "realWorldExample": "Using a ThemeContext to let any component read the current light or dark theme.",
+          "realWorldExample": "Example: A shopping app uses useContext to share cart data across Navbar, Product Page, and Checkout components.",
           "syntax": "const theme = useContext(ThemeContext);",
           "practicalExample": "import { createContext, useContext } from 'react';\nconst ThemeContext = createContext('light');\n\nfunction Card() {\n  const theme = useContext(ThemeContext);\n  return <div className={`card-${theme}`}>Interactive Card</div>;\n}",
           "commonMistakes": "Reading the wrong context provider or not wrapping components in the provider causes undefined values."
@@ -1101,7 +1101,7 @@
           "definition": "Minimal APIs let you define endpoints with very little setup in ASP.NET Core.",
           "why": "They are faster to write for simple APIs and keep the code small.",
           "problem": "Without minimal APIs, small services may need more ceremony to start quickly.",
-          "realWorldExample": "A quick hello endpoint defined with app.MapGet(\"/\", () => \"Hello\");",
+          "realWorldExample": "Example: A food delivery platform may use Minimal APIs for lightweight services such as order tracking or notifications.",
           "syntax": "app.MapGet(\"/api/items\", () => Results.Ok(items));",
           "practicalExample": "var builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\n\n// Direct endpoint mapping without controller classes:\napp.MapGet(\"/api/greet/{name}\", (string name) => \n    new { Message = $\"Hello, {name}!\" });\n\napp.Run();",
           "commonMistakes": "Using minimal APIs for very complex routes or business logic can make code harder to structure."
@@ -1151,7 +1151,7 @@
           "definition": "API security protects endpoints using tokens, CORS rules, and authentication checks.",
           "why": "It keeps unauthorized users from accessing private data or actions.",
           "problem": "Without security, anyone could call your API and change data or view secrets.",
-          "realWorldExample": "Using JWT tokens so only logged-in users can call protected routes.",
+          "realWorldExample": "Example: Banking and e-commerce applications use JWT authentication to securely identify logged-in users.",
           "syntax": "services.AddAuthentication().AddJwtBearer(...);",
           "practicalExample": "// Enforcing authorization on a controller:\n[Authorize(Roles = \"Admin\")]\n[HttpPost]\npublic IActionResult SaveData([FromBody] DataDto data) => Ok();",
           "commonMistakes": "Allowing all origins in CORS or storing tokens insecurely leaves APIs open to attack."

@@ -504,6 +504,14 @@ input:focus, textarea:focus, select:focus {
   line-height: 1.75;
 }
 
+.section-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0.3rem 0 0.8rem 0;
+  opacity: 0.85;
+}
+
 /* Custom Markdown Rendering Styles */
 .markdown-content p {
   margin-bottom: 0.85rem;
