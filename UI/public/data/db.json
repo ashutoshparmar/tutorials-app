@@ -10,7 +10,7 @@
       "id": "readonly",
       "name": "Read Only User",
       "role": "readonly",
-      "password": "reader123"
+      "password": "reader1234"
     }
   ],
   "courses": [
