@@ -12,6 +12,13 @@ export interface Topic {
   title: string;
   content: string;
   example: string;
+  definition?: string;
+  why?: string;
+  problem?: string;
+  realWorldExample?: string;
+  syntax?: string;
+  practicalExample?: string;
+  commonMistakes?: string;
   questions: InterviewQuestion[];
 }
 

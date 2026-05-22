@@ -6,7 +6,19 @@ interface ContentAreaProps {
   selectedCourse: Course | undefined;
   selectedTopic: Topic | undefined;
   canEdit: boolean;
-  updateTopicContent: (field: 'content' | 'example', value: string) => void;
+  updateTopicContent: (
+    field:
+      | 'content'
+      | 'example'
+      | 'definition'
+      | 'why'
+      | 'problem'
+      | 'realWorldExample'
+      | 'syntax'
+      | 'practicalExample'
+      | 'commonMistakes',
+    value: string
+  ) => void;
   navigateTopic: (direction: 'prev' | 'next') => void;
   hasPrev: boolean;
   hasNext: boolean;
@@ -21,6 +33,14 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
   hasPrev,
   hasNext
 }) => {
+  const definition = selectedTopic?.definition ?? selectedTopic?.content ?? '';
+  const why = selectedTopic?.why ?? '';
+  const problem = selectedTopic?.problem ?? '';
+  const realWorldExample = selectedTopic?.realWorldExample ?? '';
+  const syntax = selectedTopic?.syntax ?? '';
+  const practicalExample = selectedTopic?.practicalExample ?? selectedTopic?.example ?? '';
+  const commonMistakes = selectedTopic?.commonMistakes ?? '';
+
   return (
     <section className="panel content-panel">
       {selectedTopic ? (
@@ -33,50 +53,135 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
           </div>
 
           <div className="content-block">
-            <h3>Explanation</h3>
+            <h3>1. Definition</h3>
             {canEdit ? (
               <textarea
                 className="edit-area"
-                value={selectedTopic.content}
-                onChange={(e) => updateTopicContent('content', e.target.value)}
-                placeholder="Topic explanation (supports Markdown)..."
-                rows={10}
+                value={definition}
+                onChange={(e) => updateTopicContent('definition', e.target.value)}
+                placeholder="Write a concise definition of the topic..."
+                rows={4}
               />
             ) : (
               <div className="rendered-markdown">
-                <MarkdownRenderer content={selectedTopic.content} />
+                <MarkdownRenderer content={definition || '*Definition is not yet available.*'} />
               </div>
             )}
           </div>
 
           <div className="content-block">
-            <h3>Example / Practical Implementation</h3>
+            <h3>2. Why do we need it?</h3>
+            {canEdit ? (
+              <textarea
+                className="edit-area"
+                value={why}
+                onChange={(e) => updateTopicContent('why', e.target.value)}
+                placeholder="Explain why this topic is important or when to use it..."
+                rows={4}
+              />
+            ) : (
+              <div className="rendered-markdown">
+                <MarkdownRenderer content={why || '*This section explains the need for the topic.*'} />
+              </div>
+            )}
+          </div>
+
+          <div className="content-block">
+            <h3>3. Problem it solves</h3>
+            {canEdit ? (
+              <textarea
+                className="edit-area"
+                value={problem}
+                onChange={(e) => updateTopicContent('problem', e.target.value)}
+                placeholder="Describe the problem or pain point this solves..."
+                rows={4}
+              />
+            ) : (
+              <div className="rendered-markdown">
+                <MarkdownRenderer content={problem || '*Clarify the problem this topic addresses.*'} />
+              </div>
+            )}
+          </div>
+
+          <div className="content-block">
+            <h3>4. Real-world example</h3>
+            {canEdit ? (
+              <textarea
+                className="edit-area"
+                value={realWorldExample}
+                onChange={(e) => updateTopicContent('realWorldExample', e.target.value)}
+                placeholder="Give a concrete real-world scenario for this topic..."
+                rows={4}
+              />
+            ) : (
+              <div className="rendered-markdown">
+                <MarkdownRenderer content={realWorldExample || '*Provide a real use case or scenario.*'} />
+              </div>
+            )}
+          </div>
+
+          <div className="content-block">
+            <h3>5. Syntax</h3>
             {canEdit ? (
               <textarea
                 className="edit-area code-font"
-                value={selectedTopic.example}
-                onChange={(e) => updateTopicContent('example', e.target.value)}
-                placeholder="Topic code sample..."
+                value={syntax}
+                onChange={(e) => updateTopicContent('syntax', e.target.value)}
+                placeholder="Show the basic syntax or structure for this topic..."
+                rows={6}
+              />
+            ) : (
+              <div className="rendered-markdown">
+                <MarkdownRenderer content={syntax || '*Show the syntax or core structure here.*'} />
+              </div>
+            )}
+          </div>
+
+          <div className="content-block">
+            <h3>6. Practical example</h3>
+            {canEdit ? (
+              <textarea
+                className="edit-area code-font"
+                value={practicalExample}
+                onChange={(e) => updateTopicContent('practicalExample', e.target.value)}
+                placeholder="Include a working example or code snippet..."
                 rows={8}
               />
             ) : (
               <div className="rendered-markdown">
-                <MarkdownRenderer content={`\`\`\`typescript\n${selectedTopic.example}\n\`\`\``} />
+                <MarkdownRenderer content={`\`\`\`typescript\n${practicalExample}\n\`\`\``} />
+              </div>
+            )}
+          </div>
+
+          <div className="content-block">
+            <h3>7. Common mistakes</h3>
+            {canEdit ? (
+              <textarea
+                className="edit-area"
+                value={commonMistakes}
+                onChange={(e) => updateTopicContent('commonMistakes', e.target.value)}
+                placeholder="List frequent errors, pitfalls, or misconceptions..."
+                rows={4}
+              />
+            ) : (
+              <div className="rendered-markdown">
+                <MarkdownRenderer content={commonMistakes || '*List common traps or misunderstandings.*'} />
               </div>
             )}
           </div>
 
           <div className="pager-controls">
-            <button 
+            <button
               className="pager-btn"
-              onClick={() => navigateTopic('prev')} 
+              onClick={() => navigateTopic('prev')}
               disabled={!hasPrev}
             >
               ◀ Previous Topic
             </button>
-            <button 
+            <button
               className="pager-btn"
-              onClick={() => navigateTopic('next')} 
+              onClick={() => navigateTopic('next')}
               disabled={!hasNext}
             >
               Next Topic ▶

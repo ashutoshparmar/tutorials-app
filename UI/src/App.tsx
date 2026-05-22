@@ -268,6 +268,13 @@ function App() {
                   title: newTopicTitle,
                   content: newTopicContent || 'Explain the topic clearly here.',
                   example: newTopicExample || 'Add an example for this topic.',
+                  definition: '',
+                  why: '',
+                  problem: '',
+                  realWorldExample: '',
+                  syntax: '',
+                  practicalExample: '',
+                  commonMistakes: '',
                   questions: []
                 }
               ]
@@ -355,7 +362,19 @@ function App() {
     );
   };
 
-  const updateTopicContent = (field: 'content' | 'example', value: string) => {
+  const updateTopicContent = (
+    field:
+      | 'content'
+      | 'example'
+      | 'definition'
+      | 'why'
+      | 'problem'
+      | 'realWorldExample'
+      | 'syntax'
+      | 'practicalExample'
+      | 'commonMistakes',
+    value: string
+  ) => {
     if (!selectedCourse || !selectedTopic) return;
     updateCourseState((courses) =>
       courses.map((course) =>
