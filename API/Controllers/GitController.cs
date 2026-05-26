@@ -24,8 +24,13 @@ namespace MyTutorialAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var json =
-                System.Text.Json.JsonSerializer.Serialize(data);
+            var json = System.Text.Json.JsonSerializer.Serialize(
+                data,
+                new System.Text.Json.JsonSerializerOptions
+                {
+                    WriteIndented = true
+                }
+            );
 
             var result =
                 await _gitService.UpdateJsonFile(json);
