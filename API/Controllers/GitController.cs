@@ -1,5 +1,5 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using MyTutorialAPI.Models;
 using MyTutorialAPI.Services;
 
 namespace MyTutorialAPI.Controllers
@@ -17,16 +17,18 @@ namespace MyTutorialAPI.Controllers
 
         [HttpPost("update")]
         public async Task<IActionResult> UpdateJson(
-            [FromBody] DatabaseDto data)
+            [FromBody] JsonElement data)
         {
-            if (!ModelState.IsValid)
+            if (data.ValueKind != JsonValueKind.Object ||
+                !data.TryGetProperty("users", out var users) || users.ValueKind != JsonValueKind.Array ||
+                !data.TryGetProperty("courses", out var courses) || courses.ValueKind != JsonValueKind.Array)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Uploaded database must contain 'users' and 'courses' arrays.");
             }
 
-            var json = System.Text.Json.JsonSerializer.Serialize(
+            var json = JsonSerializer.Serialize(
                 data,
-                new System.Text.Json.JsonSerializerOptions
+                new JsonSerializerOptions
                 {
                     WriteIndented = true
                 }
