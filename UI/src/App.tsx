@@ -475,27 +475,26 @@ function App() {
           setNewTopicExample={setNewTopicExample}
           addTopic={addTopic}
         />
+            <ContentArea
+              selectedCourse={selectedCourse}
+              selectedTopic={selectedTopic}
+              canEdit={canEdit}
+              updateTopicContent={updateTopicContent}
+              navigateTopic={navigateTopic}
+              hasPrev={hasPrev}
+              hasNext={hasNext}
+            />
 
-        <ContentArea
-          selectedCourse={selectedCourse}
-          selectedTopic={selectedTopic}
-          canEdit={canEdit}
-          updateTopicContent={updateTopicContent}
-          navigateTopic={navigateTopic}
-          hasPrev={hasPrev}
-          hasNext={hasNext}
-        />
-
-        <QuestionsPanel
-          selectedTopic={selectedTopic}
-          canEdit={canEdit}
-          newQuestionText={newQuestionText}
-          setNewQuestionText={setNewQuestionText}
-          newAnswerText={newAnswerText}
-          setNewAnswerText={setNewAnswerText}
-          addQuestion={addQuestion}
-          removeQuestion={removeQuestion}
-        />
+            <QuestionsPanel
+              selectedTopic={selectedTopic}
+              canEdit={canEdit}
+              newQuestionText={newQuestionText}
+              setNewQuestionText={setNewQuestionText}
+              newAnswerText={newAnswerText}
+              setNewAnswerText={setNewAnswerText}
+              addQuestion={addQuestion}
+              removeQuestion={removeQuestion}
+            />
       </main>
     </div>
   );
