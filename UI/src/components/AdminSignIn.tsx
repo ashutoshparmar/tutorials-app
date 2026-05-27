@@ -33,19 +33,15 @@ export const AdminSignIn: React.FC<AdminSignInProps> = ({
 
         <div className="login-form">
           <label htmlFor="user-select">Select Administrator</label>
-          <select
+          <input
+            type="text"
             id="user-select"
-            value={loginUserId}
-            onChange={(e) => setLoginUserId(e.target.value)}
-          >
-            <option value="" disabled>-- Select User --</option>
-            {adminUsers.map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            ))}
-          </select>
-
+            value="admin"
+            onChange={(e) => setLoginUserId("admin")}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleLogin();
+            }}
+/>
           <label htmlFor="password">Password</label>
           <input
             id="password"
