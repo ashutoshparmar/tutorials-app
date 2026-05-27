@@ -14,8 +14,12 @@ interface TopicSidebarProps {
   setNewTopicTitle: (title: string) => void;
   newTopicContent: string;
   setNewTopicContent: (content: string) => void;
+  newTopicHtml: string;
+  setNewTopicHtml: (content: string) => void;
   newTopicExample: string;
   setNewTopicExample: (example: string) => void;
+  newTopicViewType: 'high-level' | 'detailed';
+  setNewTopicViewType: (mode: 'high-level' | 'detailed') => void;
   addTopic: () => void;
 }
 
@@ -32,8 +36,12 @@ export const TopicSidebar: React.FC<TopicSidebarProps> = ({
   setNewTopicTitle,
   newTopicContent,
   setNewTopicContent,
+  newTopicHtml,
+  setNewTopicHtml,
   newTopicExample,
   setNewTopicExample,
+  newTopicViewType,
+  setNewTopicViewType,
   addTopic
 }) => {
   return (
@@ -95,23 +103,59 @@ export const TopicSidebar: React.FC<TopicSidebarProps> = ({
       {canEdit && (
         <div className="admin-panel add-topic-panel">
           <h3>＋ Add New Topic</h3>
+          <div className="topic-view-type-row">
+            <label>
+              <input
+                type="radio"
+                name="topicViewType"
+                value="high-level"
+                checked={newTopicViewType === 'high-level'}
+                onChange={() => setNewTopicViewType('high-level')}
+              />
+              High Level View
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="topicViewType"
+                value="detailed"
+                checked={newTopicViewType === 'detailed'}
+                onChange={() => setNewTopicViewType('detailed')}
+              />
+              Detailed View
+            </label>
+          </div>
+
           <input
             value={newTopicTitle}
             onChange={(e) => setNewTopicTitle(e.target.value)}
             placeholder="Topic title"
           />
-          <textarea
-            value={newTopicContent}
-            onChange={(e) => setNewTopicContent(e.target.value)}
-            placeholder="Topic content (Markdown supported!)"
-            rows={3}
-          />
-          <textarea
-            value={newTopicExample}
-            onChange={(e) => setNewTopicExample(e.target.value)}
-            placeholder="Code example / snippet"
-            rows={2}
-          />
+
+          {newTopicViewType === 'high-level' ? (
+            <>
+              <textarea
+                value={newTopicContent}
+                onChange={(e) => setNewTopicContent(e.target.value)}
+                placeholder="Topic content (Markdown supported!)"
+                rows={3}
+              />
+              <textarea
+                value={newTopicExample}
+                onChange={(e) => setNewTopicExample(e.target.value)}
+                placeholder="Code example / snippet"
+                rows={2}
+              />
+            </>
+          ) : (
+            <textarea
+              value={newTopicHtml}
+              onChange={(e) => setNewTopicHtml(e.target.value)}
+              placeholder="HTML content for detailed view"
+              rows={6}
+            />
+          )}
+
           <button className="primary-btn" onClick={addTopic}>Create Topic</button>
         </div>
       )}

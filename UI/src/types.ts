@@ -19,6 +19,8 @@ export interface Topic {
   syntax?: string;
   practicalExample?: string;
   commonMistakes?: string;
+  viewType?: 'high-level' | 'detailed';
+  html?: string;
   questions: InterviewQuestion[];
 }
 

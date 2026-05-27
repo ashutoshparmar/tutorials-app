@@ -6,6 +6,7 @@ import { CourseTabs } from './components/CourseTabs';
 import { TopicSidebar } from './components/TopicSidebar';
 import { ContentArea } from './components/ContentArea';
 import { QuestionsPanel } from './components/QuestionsPanel';
+import { DetailedTopicView } from './components/DetailedTopicView';
 //new commit
 const STORAGE_VERSION = 2;
 const STORAGE_KEY = `tutorial-app-db-v${STORAGE_VERSION}`;
@@ -59,7 +60,9 @@ function App() {
   const [newCourseTitle, setNewCourseTitle] = useState('');
   const [newTopicTitle, setNewTopicTitle] = useState('');
   const [newTopicContent, setNewTopicContent] = useState('');
+  const [newTopicHtml, setNewTopicHtml] = useState('');
   const [newTopicExample, setNewTopicExample] = useState('');
+  const [newTopicViewType, setNewTopicViewType] = useState<'high-level' | 'detailed'>('high-level');
   const [newQuestionText, setNewQuestionText] = useState('');
   const [newAnswerText, setNewAnswerText] = useState('');
   const [loginUserId, setLoginUserId] = useState(() => db.users.find((user) => user.role === 'admin')?.id ?? '');
@@ -266,8 +269,13 @@ function App() {
                 {
                   id,
                   title: newTopicTitle,
-                  content: newTopicContent || 'Explain the topic clearly here.',
-                  example: newTopicExample || 'Add an example for this topic.',
+                  viewType: newTopicViewType,
+                  content:
+                    newTopicViewType === 'high-level'
+                      ? newTopicContent || 'Explain the topic clearly here.'
+                      : '',
+                  example: newTopicViewType === 'high-level' ? newTopicExample || 'Add an example for this topic.' : '',
+                  html: newTopicViewType === 'detailed' ? newTopicHtml || '<p>Explain the topic clearly here.</p>' : '',
                   definition: '',
                   why: '',
                   problem: '',
@@ -284,7 +292,9 @@ function App() {
     );
     setNewTopicTitle('');
     setNewTopicContent('');
+    setNewTopicHtml('');
     setNewTopicExample('');
+    setNewTopicViewType('high-level');
     setSelectedTopicId(id);
   };
 
@@ -372,7 +382,8 @@ function App() {
       | 'realWorldExample'
       | 'syntax'
       | 'practicalExample'
-      | 'commonMistakes',
+      | 'commonMistakes'
+      | 'html',
     value: string
   ) => {
     if (!selectedCourse || !selectedTopic) return;
@@ -410,6 +421,8 @@ function App() {
     const idx = selectedCourse.topics.findIndex((topic) => topic.id === selectedTopic.id);
     return idx >= 0 && idx < selectedCourse.topics.length - 1;
   }, [selectedCourse, selectedTopic]);
+
+  const selectedTopicViewType = selectedTopic?.viewType ?? 'high-level';
 
   // If Admin route and not signed in
   if (isAdminRoute && !activeUser) {
@@ -471,10 +484,23 @@ function App() {
           setNewTopicTitle={setNewTopicTitle}
           newTopicContent={newTopicContent}
           setNewTopicContent={setNewTopicContent}
+          newTopicHtml={newTopicHtml}
+          setNewTopicHtml={setNewTopicHtml}
           newTopicExample={newTopicExample}
           setNewTopicExample={setNewTopicExample}
+          newTopicViewType={newTopicViewType}
+          setNewTopicViewType={setNewTopicViewType}
           addTopic={addTopic}
         />
+        {selectedTopicViewType === 'detailed' ? (
+          <DetailedTopicView
+            selectedCourse={selectedCourse}
+            selectedTopic={selectedTopic}
+            canEdit={canEdit}
+            updateTopicContent={updateTopicContent}
+          />
+        ) : (
+          <>
             <ContentArea
               selectedCourse={selectedCourse}
               selectedTopic={selectedTopic}
@@ -495,6 +521,8 @@ function App() {
               addQuestion={addQuestion}
               removeQuestion={removeQuestion}
             />
+          </>
+        )}
       </main>
     </div>
   );
