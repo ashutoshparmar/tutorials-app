@@ -48,8 +48,8 @@ export const DetailedTopicView: React.FC<DetailedTopicViewProps> = ({
                 </div>
               </div>
             )}
-
-            <div className="html-preview-pane">
+<div dangerouslySetInnerHTML={{ __html: previewHtml }} />
+            {/* <div className="html-preview-pane">
               <div className="content-block">
                 <div className="html-iframe-wrapper">
                   <iframe
@@ -60,7 +60,7 @@ export const DetailedTopicView: React.FC<DetailedTopicViewProps> = ({
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </>
       ) : (

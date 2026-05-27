@@ -565,20 +565,7 @@ input:focus, textarea:focus, select:focus {
     color: var(--text-primary);
     resize: vertical;
   }
-
-  .html-iframe-wrapper {
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    overflow: hidden;
-    background: white;
-    min-height: 520px;
-  }
-
-  .html-preview-iframe {
-    width: 100%;
-    height: 520px;
-    border: none;
-  }
+  
 .markdown-list {
   margin-left: 1.5rem;
   margin-bottom: 1rem;

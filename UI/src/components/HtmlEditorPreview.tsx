@@ -1,6 +1,5 @@
 import React from 'react';
 import { MarkdownRenderer } from './MarkdownRenderer';
-import './HtmlEditorPreview.css';
 
 interface Props {
   value: string;
@@ -23,14 +22,7 @@ export const HtmlEditorPreview: React.FC<Props> = ({ value, onChange, canEdit = 
           placeholder={placeholder}
           rows={rows}
         />
-        <div className="html-iframe-wrapper">
-          <iframe
-            title="preview"
-            srcDoc={value || '<div style="padding:16px;color:#555;">Preview is empty</div>'}
-            sandbox="allow-same-origin allow-scripts"
-            className="html-preview-iframe"
-          />
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: value }} />
       </div>
     );
   }
@@ -38,14 +30,7 @@ export const HtmlEditorPreview: React.FC<Props> = ({ value, onChange, canEdit = 
   // view mode: render HTML if present, otherwise render markdown
   if (isHtml) {
     return (
-      <div className="html-iframe-wrapper">
-        <iframe
-          title="preview"
-          srcDoc={value}
-          sandbox="allow-same-origin"
-          className="html-preview-iframe"
-        />
-      </div>
+      <div dangerouslySetInnerHTML={{ __html: value }} />
     );
   }
 

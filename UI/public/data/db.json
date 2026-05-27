@@ -26,10 +26,10 @@
           "why": "React helps build complex interfaces by managing UI state and updating only what changes instead of reloading the whole page.",
           "problem": "Without React, managing interactive UI state requires manual DOM updates, which is error-prone and slow for larger applications.",
           "realWorldExample": "A dashboard that refreshes only the chart widgets when new data arrives instead of re-rendering the entire page.",
-          "syntax": "function App() {\n  return <h1>Hello, World!</h1>;\n}",
-          "practicalExample": "import { createRoot } from 'react-dom/client';\nconst root = createRoot(document.getElementById('root'));\nroot.render(<h1>Hello, World!</h1>);",
+          "syntax": "function App() {\n  return \u003Ch1\u003EHello, World!\u003C/h1\u003E;\n}",
+          "practicalExample": "import { createRoot } from \u0027react-dom/client\u0027;\nconst root = createRoot(document.getElementById(\u0027root\u0027));\nroot.render(\u003Ch1\u003EHello, World!\u003C/h1\u003E);",
           "commonMistakes": "Mutating component state directly and using array indexes as keys can cause rendering bugs.",
-          "example": "// A basic React app runs by mounting a root component:\nimport { createRoot } from 'react-dom/client';\nconst root = createRoot(document.getElementById('root'));\nroot.render(<h1>Hello, World!</h1>);",
+          "example": "// A basic React app runs by mounting a root component:\nimport { createRoot } from \u0027react-dom/client\u0027;\nconst root = createRoot(document.getElementById(\u0027root\u0027));\nroot.render(\u003Ch1\u003EHello, World!\u003C/h1\u003E);",
           "questions": [
             {
               "id": "react-intro-q1",
@@ -46,8 +46,8 @@
         {
           "id": "jsx",
           "title": "JSX (JavaScript XML)",
-          "content": "JSX stands for JavaScript XML. It lets you write HTML-like code directly inside your JavaScript. To write dynamic values inside JSX, wrap any valid JavaScript expression in curly braces `{}`. This combines structural layout with JavaScript logic.",
-          "example": "function UserGreeting() {\n  const name = 'Ashutosh';\n  return <h2>Welcome back, {name}!</h2>;\n}",
+          "content": "JSX stands for JavaScript XML. It lets you write HTML-like code directly inside your JavaScript. To write dynamic values inside JSX, wrap any valid JavaScript expression in curly braces \u0060{}\u0060. This combines structural layout with JavaScript logic.",
+          "example": "function UserGreeting() {\n  const name = \u0027Ashutosh\u0027;\n  return \u003Ch2\u003EWelcome back, {name}!\u003C/h2\u003E;\n}",
           "questions": [
             {
               "id": "react-jsx-q1",
@@ -63,16 +63,16 @@
           "definition": "JSX is a syntax extension that lets you write HTML-like markup inside JavaScript code.",
           "why": "It makes React components easier to read and write by looking similar to the UI they create.",
           "problem": "Without JSX, building a React component would require nested function calls and less readable code.",
-          "realWorldExample": "Using JSX lets you return <div>Hello</div> directly from a React component.",
-          "syntax": "function Greeting() {\n  return <h1>Hello, world!</h1>;\n}",
-          "practicalExample": "function UserGreeting() {\n  const name = 'Ashutosh';\n  return <h2>Welcome back, {name}!</h2>;\n}",
+          "realWorldExample": "Using JSX lets you return \u003Cdiv\u003EHello\u003C/div\u003E directly from a React component.",
+          "syntax": "function Greeting() {\n  return \u003Ch1\u003EHello, world!\u003C/h1\u003E;\n}",
+          "practicalExample": "function UserGreeting() {\n  const name = \u0027Ashutosh\u0027;\n  return \u003Ch2\u003EWelcome back, {name}!\u003C/h2\u003E;\n}",
           "commonMistakes": "Forgetting to close tags or using JavaScript expressions outside of { } are common JSX errors."
         },
         {
           "id": "components",
           "title": "Components",
           "content": "Components are the self-contained building blocks of a React app. They are simple JavaScript functions that return JSX. By splitting your page into smaller components (like a Header, Button, or Card), you can reuse and test code easily.",
-          "example": "function Header() {\n  return <header>Welcome to My Website</header>;\n}\n\nfunction App() {\n  return (\n    <div>\n      <Header />\n      <p>This is the homepage.</p>\n    </div>\n  );\n}",
+          "example": "function Header() {\n  return \u003Cheader\u003EWelcome to My Website\u003C/header\u003E;\n}\n\nfunction App() {\n  return (\n    \u003Cdiv\u003E\n      \u003CHeader /\u003E\n      \u003Cp\u003EThis is the homepage.\u003C/p\u003E\n    \u003C/div\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-components-q1",
@@ -89,15 +89,15 @@
           "why": "They help you break a page into smaller, easier-to-manage parts.",
           "problem": "Without components, large apps become hard to organize and hard to reuse.",
           "realWorldExample": "A header, footer, and card can all be separate components reused across pages.",
-          "syntax": "function Header() {\n  return <header>Site title</header>;\n}",
-          "practicalExample": "function Header() {\n  return <header>Welcome to My Website</header>;\n}\n\nfunction App() {\n  return (\n    <div>\n      <Header />\n      <p>This is the homepage.</p>\n    </div>\n  );\n}",
+          "syntax": "function Header() {\n  return \u003Cheader\u003ESite title\u003C/header\u003E;\n}",
+          "practicalExample": "function Header() {\n  return \u003Cheader\u003EWelcome to My Website\u003C/header\u003E;\n}\n\nfunction App() {\n  return (\n    \u003Cdiv\u003E\n      \u003CHeader /\u003E\n      \u003Cp\u003EThis is the homepage.\u003C/p\u003E\n    \u003C/div\u003E\n  );\n}",
           "commonMistakes": "Making components too large or putting unrelated logic in one component makes maintenance harder."
         },
         {
           "id": "props",
           "title": "Props",
-          "content": "Props (short for properties) are inputs you pass from a parent component down to a child component, just like arguments in a function. Props are read-only (immutable)—a component must never modify its own props.",
-          "example": "function Welcome(props) {\n  return <h2>Hello, {props.name}!</h2>;\n}\n\n// Usage in Parent:\n// <Welcome name=\"Ashutosh\" />",
+          "content": "Props (short for properties) are inputs you pass from a parent component down to a child component, just like arguments in a function. Props are read-only (immutable)\u2014a component must never modify its own props.",
+          "example": "function Welcome(props) {\n  return \u003Ch2\u003EHello, {props.name}!\u003C/h2\u003E;\n}\n\n// Usage in Parent:\n// \u003CWelcome name=\u0022Ashutosh\u0022 /\u003E",
           "questions": [
             {
               "id": "react-props-q1",
@@ -114,15 +114,15 @@
           "why": "They allow components to work with different data without changing their internal code.",
           "problem": "Props solve the need to customize a child component from the outside.",
           "realWorldExample": "Passing a user name into a greeting component so it can show Hello, Ashutosh.",
-          "syntax": "function Welcome(props) {\n  return <h2>Hello, {props.name}!</h2>;\n}",
-          "practicalExample": "function Welcome(props) {\n  return <h2>Hello, {props.name}!</h2>;\n}\n\n// Usage in Parent:\n// <Welcome name=\"Ashutosh\" />",
+          "syntax": "function Welcome(props) {\n  return \u003Ch2\u003EHello, {props.name}!\u003C/h2\u003E;\n}",
+          "practicalExample": "function Welcome(props) {\n  return \u003Ch2\u003EHello, {props.name}!\u003C/h2\u003E;\n}\n\n// Usage in Parent:\n// \u003CWelcome name=\u0022Ashutosh\u0022 /\u003E",
           "commonMistakes": "Trying to change props inside a child component or missing required props are common mistakes."
         },
         {
           "id": "usestate",
           "title": "useState",
-          "content": "State is data inside a component that can change over time (like a form input or a counter). The `useState` hook allows functional components to have state. It returns two items: the current state value, and a function to update it.",
-          "example": "import { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return (\n    <button onClick={() => setCount(count + 1)}>\n      Count is: {count}\n    </button>\n  );\n}",
+          "content": "State is data inside a component that can change over time (like a form input or a counter). The \u0060useState\u0060 hook allows functional components to have state. It returns two items: the current state value, and a function to update it.",
+          "example": "import { useState } from \u0027react\u0027;\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return (\n    \u003Cbutton onClick={() =\u003E setCount(count \u002B 1)}\u003E\n      Count is: {count}\n    \u003C/button\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-usestate-q1",
@@ -139,15 +139,15 @@
           "why": "It updates the UI automatically when the state changes.",
           "problem": "Without state, your UI cannot react to user input or dynamic values.",
           "realWorldExample": "A counter button that updates the number each time it is clicked.",
-          "syntax": "const [count, setCount] = useState(0);\nsetCount(count + 1);",
-          "practicalExample": "import { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return (\n    <button onClick={() => setCount(count + 1)}>\n      Count is: {count}\n    </button>\n  );\n}",
+          "syntax": "const [count, setCount] = useState(0);\nsetCount(count \u002B 1);",
+          "practicalExample": "import { useState } from \u0027react\u0027;\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return (\n    \u003Cbutton onClick={() =\u003E setCount(count \u002B 1)}\u003E\n      Count is: {count}\n    \u003C/button\u003E\n  );\n}",
           "commonMistakes": "Directly modifying state or using the wrong state variable in the update function can cause bugs."
         },
         {
           "id": "event-handling",
           "title": "Event Handling",
-          "content": "React handles events like clicks, form submissions, and text typing using camelCase attributes (like `onClick` or `onChange`) rather than lowercase. You pass function references directly to these event handlers.",
-          "example": "function Clicker() {\n  const greet = () => alert('Hello!');\n  return <button onClick={greet}>Click me</button>;\n}",
+          "content": "React handles events like clicks, form submissions, and text typing using camelCase attributes (like \u0060onClick\u0060 or \u0060onChange\u0060) rather than lowercase. You pass function references directly to these event handlers.",
+          "example": "function Clicker() {\n  const greet = () =\u003E alert(\u0027Hello!\u0027);\n  return \u003Cbutton onClick={greet}\u003EClick me\u003C/button\u003E;\n}",
           "questions": [
             {
               "id": "react-event-q1",
@@ -164,24 +164,24 @@
           "why": "It makes your app interactive and able to react to user input.",
           "problem": "Without event handlers, buttons and forms would not do anything when clicked or submitted.",
           "realWorldExample": "Showing an alert when a user clicks a button.",
-          "syntax": "<button onClick={handleClick}>Click me</button>",
-          "practicalExample": "function Clicker() {\n  const greet = () => alert('Hello!');\n  return <button onClick={greet}>Click me</button>;\n}",
+          "syntax": "\u003Cbutton onClick={handleClick}\u003EClick me\u003C/button\u003E",
+          "practicalExample": "function Clicker() {\n  const greet = () =\u003E alert(\u0027Hello!\u0027);\n  return \u003Cbutton onClick={greet}\u003EClick me\u003C/button\u003E;\n}",
           "commonMistakes": "Calling the handler instead of passing it as a reference or using the wrong event property are common errors."
         },
         {
           "id": "conditional-rendering",
           "title": "Conditional Rendering",
-          "content": "Conditional rendering allows you to display different UI layouts depending on conditions (like checking if a user is logged in). You can do this using standard JavaScript `if` statements, ternary operators `? :`, or the logical logical-AND `&&` operator.",
-          "example": "function LoggedInStatus({ isLoggedIn }) {\n  return (\n    <div>\n      {isLoggedIn ? <p>Welcome back!</p> : <p>Please sign in.</p>}\n      {isLoggedIn && <button>Go to dashboard</button>}\n    </div>\n  );\n}",
+          "content": "Conditional rendering allows you to display different UI layouts depending on conditions (like checking if a user is logged in). You can do this using standard JavaScript \u0060if\u0060 statements, ternary operators \u0060? :\u0060, or the logical logical-AND \u0060\u0026\u0026\u0060 operator.",
+          "example": "function LoggedInStatus({ isLoggedIn }) {\n  return (\n    \u003Cdiv\u003E\n      {isLoggedIn ? \u003Cp\u003EWelcome back!\u003C/p\u003E : \u003Cp\u003EPlease sign in.\u003C/p\u003E}\n      {isLoggedIn \u0026\u0026 \u003Cbutton\u003EGo to dashboard\u003C/button\u003E}\n    \u003C/div\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-cond-q1",
               "question": "How can you conditionally render JSX?",
-              "answer": "Use the ternary operator (? :), logical AND (&&), or simple if-else statements."
+              "answer": "Use the ternary operator (? :), logical AND (\u0026\u0026), or simple if-else statements."
             },
             {
               "id": "react-cond-q2",
-              "question": "What does double ampersand (&&) do in JSX?",
+              "question": "What does double ampersand (\u0026\u0026) do in JSX?",
               "answer": "It renders the element on the right only if the condition on the left evaluates to true."
             }
           ],
@@ -189,15 +189,15 @@
           "why": "It lets you display different content for different app states.",
           "problem": "Without it, you cannot show login screens, loading messages, or error states correctly.",
           "realWorldExample": "Display a welcome message only when the user is logged in.",
-          "syntax": "{isLoggedIn ? <Dashboard /> : <Login />}",
-          "practicalExample": "function LoggedInStatus({ isLoggedIn }) {\n  return (\n    <div>\n      {isLoggedIn ? <p>Welcome back!</p> : <p>Please sign in.</p>}\n      {isLoggedIn && <button>Go to dashboard</button>}\n    </div>\n  );\n}",
-          "commonMistakes": "Using && incorrectly with falsy values or not handling the else case can cause unexpected output."
+          "syntax": "{isLoggedIn ? \u003CDashboard /\u003E : \u003CLogin /\u003E}",
+          "practicalExample": "function LoggedInStatus({ isLoggedIn }) {\n  return (\n    \u003Cdiv\u003E\n      {isLoggedIn ? \u003Cp\u003EWelcome back!\u003C/p\u003E : \u003Cp\u003EPlease sign in.\u003C/p\u003E}\n      {isLoggedIn \u0026\u0026 \u003Cbutton\u003EGo to dashboard\u003C/button\u003E}\n    \u003C/div\u003E\n  );\n}",
+          "commonMistakes": "Using \u0026\u0026 incorrectly with falsy values or not handling the else case can cause unexpected output."
         },
         {
           "id": "lists-keys",
           "title": "Lists and Keys",
-          "content": "When rendering arrays of data in JSX, we use the `.map()` method to loop over elements. Each item in the loop needs a unique `key` prop. Keys help React identify which items have changed, been added, or been removed, optimizing performance.",
-          "example": "function FruitList() {\n  const fruits = ['Apple', 'Banana', 'Orange'];\n  return (\n    <ul>\n      {fruits.map((fruit, index) => (\n        <li key={fruit}>{fruit}</li>\n      ))}\n    </ul>\n  );\n}",
+          "content": "When rendering arrays of data in JSX, we use the \u0060.map()\u0060 method to loop over elements. Each item in the loop needs a unique \u0060key\u0060 prop. Keys help React identify which items have changed, been added, or been removed, optimizing performance.",
+          "example": "function FruitList() {\n  const fruits = [\u0027Apple\u0027, \u0027Banana\u0027, \u0027Orange\u0027];\n  return (\n    \u003Cul\u003E\n      {fruits.map((fruit, index) =\u003E (\n        \u003Cli key={fruit}\u003E{fruit}\u003C/li\u003E\n      ))}\n    \u003C/ul\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-lists-q1",
@@ -214,15 +214,15 @@
           "why": "Keys help React track items when the list changes, so updates stay fast and correct.",
           "problem": "Without unique keys, React may reuse the wrong DOM elements when a list changes.",
           "realWorldExample": "Rendering a list of products, each with a unique key from its id.",
-          "syntax": "{items.map(item => <li key={item.id}>{item.name}</li>)}",
-          "practicalExample": "function FruitList() {\n  const fruits = ['Apple', 'Banana', 'Orange'];\n  return (\n    <ul>\n      {fruits.map((fruit, index) => (\n        <li key={fruit}>{fruit}</li>\n      ))}\n    </ul>\n  );\n}",
+          "syntax": "{items.map(item =\u003E \u003Cli key={item.id}\u003E{item.name}\u003C/li\u003E)}",
+          "practicalExample": "function FruitList() {\n  const fruits = [\u0027Apple\u0027, \u0027Banana\u0027, \u0027Orange\u0027];\n  return (\n    \u003Cul\u003E\n      {fruits.map((fruit, index) =\u003E (\n        \u003Cli key={fruit}\u003E{fruit}\u003C/li\u003E\n      ))}\n    \u003C/ul\u003E\n  );\n}",
           "commonMistakes": "Using array indexes as keys when the list can change order may cause bugs."
         },
         {
           "id": "controlled-vs-uncontrolled",
           "title": "Controlled vs. Uncontrolled Components",
-          "content": "In React, form inputs can be managed in two ways. Controlled inputs store their value in React state and update via `onChange`. Uncontrolled inputs let the browser handle the form state directly, and you query the values when needed using a `useRef` hook.",
-          "example": "// Controlled Input:\nconst [name, setName] = useState('');\n<input value={name} onChange={e => setName(e.target.value)} />\n\n// Uncontrolled Input:\nconst inputRef = useRef(null);\nconst submit = () => alert(inputRef.current.value);\n<input ref={inputRef} />",
+          "content": "In React, form inputs can be managed in two ways. Controlled inputs store their value in React state and update via \u0060onChange\u0060. Uncontrolled inputs let the browser handle the form state directly, and you query the values when needed using a \u0060useRef\u0060 hook.",
+          "example": "// Controlled Input:\nconst [name, setName] = useState(\u0027\u0027);\n\u003Cinput value={name} onChange={e =\u003E setName(e.target.value)} /\u003E\n\n// Uncontrolled Input:\nconst inputRef = useRef(null);\nconst submit = () =\u003E alert(inputRef.current.value);\n\u003Cinput ref={inputRef} /\u003E",
           "questions": [
             {
               "id": "react-ctrl-q1",
@@ -239,15 +239,15 @@
           "why": "Controlled components give you full control over form input values in React.",
           "problem": "Uncontrolled inputs make it harder to validate or update values programmatically.",
           "realWorldExample": "A controlled text input updates state on each keystroke and renders the current value.",
-          "syntax": "<input value={name} onChange={e => setName(e.target.value)} />",
-          "practicalExample": "// Controlled Input:\nconst [name, setName] = useState('');\n<input value={name} onChange={e => setName(e.target.value)} />\n\n// Uncontrolled Input:\nconst inputRef = useRef(null);\nconst submit = () => alert(inputRef.current.value);\n<input ref={inputRef} />",
+          "syntax": "\u003Cinput value={name} onChange={e =\u003E setName(e.target.value)} /\u003E",
+          "practicalExample": "// Controlled Input:\nconst [name, setName] = useState(\u0027\u0027);\n\u003Cinput value={name} onChange={e =\u003E setName(e.target.value)} /\u003E\n\n// Uncontrolled Input:\nconst inputRef = useRef(null);\nconst submit = () =\u003E alert(inputRef.current.value);\n\u003Cinput ref={inputRef} /\u003E",
           "commonMistakes": "Mixing controlled and uncontrolled inputs or forgetting the onChange handler causes warnings."
         },
         {
           "id": "useeffect",
           "title": "useEffect",
-          "content": "The `useEffect` hook lets you synchronize a component with external systems (performing side effects like fetching database data, timers, or custom DOM updates). It runs after the component renders. It takes a second argument: a dependency array of variables. The hook re-runs only when these variables change.",
-          "example": "import { useEffect, useState } from 'react';\n\nfunction Profile() {\n  const [user, setUser] = useState(null);\n  useEffect(() => {\n    fetch('https://api.github.com/users/octocat')\n      .then(res => res.json())\n      .then(data => setUser(data));\n  }, []); // Empty array means run only ONCE when mounting\n}",
+          "content": "The \u0060useEffect\u0060 hook lets you synchronize a component with external systems (performing side effects like fetching database data, timers, or custom DOM updates). It runs after the component renders. It takes a second argument: a dependency array of variables. The hook re-runs only when these variables change.",
+          "example": "import { useEffect, useState } from \u0027react\u0027;\n\nfunction Profile() {\n  const [user, setUser] = useState(null);\n  useEffect(() =\u003E {\n    fetch(\u0027https://api.github.com/users/octocat\u0027)\n      .then(res =\u003E res.json())\n      .then(data =\u003E setUser(data));\n  }, []); // Empty array means run only ONCE when mounting\n}",
           "questions": [
             {
               "id": "react-useeffect-q1",
@@ -264,15 +264,15 @@
           "why": "It lets React perform tasks that are not part of rendering the UI.",
           "problem": "Without useEffect, side effects would run in the render flow and cause bugs or repeated calls.",
           "realWorldExample": "Loading user data from an API when the component first appears.",
-          "syntax": "useEffect(() => {\n  fetchData();\n}, []);",
-          "practicalExample": "import { useEffect, useState } from 'react';\n\nfunction Profile() {\n  const [user, setUser] = useState(null);\n  useEffect(() => {\n    fetch('https://api.github.com/users/octocat')\n      .then(res => res.json())\n      .then(data => setUser(data));\n  }, []); // Empty array means run only ONCE when mounting\n}",
+          "syntax": "useEffect(() =\u003E {\n  fetchData();\n}, []);",
+          "practicalExample": "import { useEffect, useState } from \u0027react\u0027;\n\nfunction Profile() {\n  const [user, setUser] = useState(null);\n  useEffect(() =\u003E {\n    fetch(\u0027https://api.github.com/users/octocat\u0027)\n      .then(res =\u003E res.json())\n      .then(data =\u003E setUser(data));\n  }, []); // Empty array means run only ONCE when mounting\n}",
           "commonMistakes": "Forgetting the dependency array or using stale values inside the effect can lead to bugs."
         },
         {
           "id": "usereducer",
           "title": "useReducer",
-          "content": "The `useReducer` hook is used for managing complex state logic across multiple actions (like a shopping cart or multi-step checkout form). It works like Redux: you create a `reducer` function that takes the current state and an `action` and returns a brand-new state.",
-          "example": "import { useReducer } from 'react';\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case 'increment': return { count: state.count + 1 };\n    case 'decrement': return { count: state.count - 1 };\n    default: throw new Error();\n  }\n}\n\nfunction Counter() {\n  const [state, dispatch] = useReducer(reducer, { count: 0 });\n  return (\n    <button onClick={() => dispatch({ type: 'increment' })}>\n      Count is: {state.count}\n    </button>\n  );\n}",
+          "content": "The \u0060useReducer\u0060 hook is used for managing complex state logic across multiple actions (like a shopping cart or multi-step checkout form). It works like Redux: you create a \u0060reducer\u0060 function that takes the current state and an \u0060action\u0060 and returns a brand-new state.",
+          "example": "import { useReducer } from \u0027react\u0027;\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case \u0027increment\u0027: return { count: state.count \u002B 1 };\n    case \u0027decrement\u0027: return { count: state.count - 1 };\n    default: throw new Error();\n  }\n}\n\nfunction Counter() {\n  const [state, dispatch] = useReducer(reducer, { count: 0 });\n  return (\n    \u003Cbutton onClick={() =\u003E dispatch({ type: \u0027increment\u0027 })}\u003E\n      Count is: {state.count}\n    \u003C/button\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-usereducer-q1",
@@ -290,14 +290,14 @@
           "problem": "Without useReducer, complex state logic can become hard to manage with useState.",
           "realWorldExample": "Example: An e-commerce application uses useReducer to manage shopping cart actions like add item, remove item, and quantity updates.",
           "syntax": "const [state, dispatch] = useReducer(reducer, initialState);",
-          "practicalExample": "import { useReducer } from 'react';\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case 'increment': return { count: state.count + 1 };\n    case 'decrement': return { count: state.count - 1 };\n    default: throw new Error();\n  }\n}\n\nfunction Counter() {\n  const [state, dispatch] = useReducer(reducer, { count: 0 });\n  return (\n    <button onClick={() => dispatch({ type: 'increment' })}>\n      Count is: {state.count}\n    </button>\n  );\n}",
+          "practicalExample": "import { useReducer } from \u0027react\u0027;\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case \u0027increment\u0027: return { count: state.count \u002B 1 };\n    case \u0027decrement\u0027: return { count: state.count - 1 };\n    default: throw new Error();\n  }\n}\n\nfunction Counter() {\n  const [state, dispatch] = useReducer(reducer, { count: 0 });\n  return (\n    \u003Cbutton onClick={() =\u003E dispatch({ type: \u0027increment\u0027 })}\u003E\n      Count is: {state.count}\n    \u003C/button\u003E\n  );\n}",
           "commonMistakes": "Mutating state directly inside the reducer or using inconsistent action shapes are common issues."
         },
         {
           "id": "usecontext",
           "title": "useContext",
-          "content": "Context provides a way to pass data through the component tree without having to pass props down manually at every level (known as prop drilling). The `useContext` hook lets you subscribe to global variables, like a user profile status or styling themes.",
-          "example": "import { createContext, useContext } from 'react';\nconst ThemeContext = createContext('light');\n\nfunction Card() {\n  const theme = useContext(ThemeContext);\n  return <div className={`card-${theme}`}>Interactive Card</div>;\n}",
+          "content": "Context provides a way to pass data through the component tree without having to pass props down manually at every level (known as prop drilling). The \u0060useContext\u0060 hook lets you subscribe to global variables, like a user profile status or styling themes.",
+          "example": "import { createContext, useContext } from \u0027react\u0027;\nconst ThemeContext = createContext(\u0027light\u0027);\n\nfunction Card() {\n  const theme = useContext(ThemeContext);\n  return \u003Cdiv className={\u0060card-${theme}\u0060}\u003EInteractive Card\u003C/div\u003E;\n}",
           "questions": [
             {
               "id": "react-usecontext-q1",
@@ -315,14 +315,14 @@
           "problem": "Without context, you might need deep prop drilling across many components.",
           "realWorldExample": "Example: A shopping app uses useContext to share cart data across Navbar, Product Page, and Checkout components.",
           "syntax": "const theme = useContext(ThemeContext);",
-          "practicalExample": "import { createContext, useContext } from 'react';\nconst ThemeContext = createContext('light');\n\nfunction Card() {\n  const theme = useContext(ThemeContext);\n  return <div className={`card-${theme}`}>Interactive Card</div>;\n}",
+          "practicalExample": "import { createContext, useContext } from \u0027react\u0027;\nconst ThemeContext = createContext(\u0027light\u0027);\n\nfunction Card() {\n  const theme = useContext(ThemeContext);\n  return \u003Cdiv className={\u0060card-${theme}\u0060}\u003EInteractive Card\u003C/div\u003E;\n}",
           "commonMistakes": "Reading the wrong context provider or not wrapping components in the provider causes undefined values."
         },
         {
           "id": "useref",
           "title": "useRef",
-          "content": "The `useRef` hook lets you create a reference to a DOM node directly (for focusing inputs, playing media, or measuring layout sizes) or to store a value that persists between renders without triggering a re-render when it changes.",
-          "example": "import { useRef } from 'react';\n\nfunction InputFocus() {\n  const inputRef = useRef(null);\n  const focusInput = () => inputRef.current.focus();\n  return (\n    <div>\n      <input ref={inputRef} />\n      <button onClick={focusInput}>Focus Input</button>\n    </div>\n  );\n}",
+          "content": "The \u0060useRef\u0060 hook lets you create a reference to a DOM node directly (for focusing inputs, playing media, or measuring layout sizes) or to store a value that persists between renders without triggering a re-render when it changes.",
+          "example": "import { useRef } from \u0027react\u0027;\n\nfunction InputFocus() {\n  const inputRef = useRef(null);\n  const focusInput = () =\u003E inputRef.current.focus();\n  return (\n    \u003Cdiv\u003E\n      \u003Cinput ref={inputRef} /\u003E\n      \u003Cbutton onClick={focusInput}\u003EFocus Input\u003C/button\u003E\n    \u003C/div\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-useref-q1",
@@ -339,15 +339,15 @@
           "why": "It is useful for accessing DOM elements or keeping a value between renders.",
           "problem": "Without useRef, you would lose a value after every component render or cause extra updates.",
           "realWorldExample": "Focusing an input element automatically when the page loads.",
-          "syntax": "const inputRef = useRef(null);\n<input ref={inputRef} />",
-          "practicalExample": "import { useRef } from 'react';\n\nfunction InputFocus() {\n  const inputRef = useRef(null);\n  const focusInput = () => inputRef.current.focus();\n  return (\n    <div>\n      <input ref={inputRef} />\n      <button onClick={focusInput}>Focus Input</button>\n    </div>\n  );\n}",
+          "syntax": "const inputRef = useRef(null);\n\u003Cinput ref={inputRef} /\u003E",
+          "practicalExample": "import { useRef } from \u0027react\u0027;\n\nfunction InputFocus() {\n  const inputRef = useRef(null);\n  const focusInput = () =\u003E inputRef.current.focus();\n  return (\n    \u003Cdiv\u003E\n      \u003Cinput ref={inputRef} /\u003E\n      \u003Cbutton onClick={focusInput}\u003EFocus Input\u003C/button\u003E\n    \u003C/div\u003E\n  );\n}",
           "commonMistakes": "Expecting ref.current to update instantly or using refs for state-like values can be confusing."
         },
         {
           "id": "usememo-usecallback",
-          "title": "useMemo & useCallback",
-          "content": "These are optimization hooks. `useMemo` caches (memoizes) the *result* of a slow calculation, so it doesn't run again unless dependencies change. `useCallback` caches the *function definition* itself, preventing React from recreating it on every single render.",
-          "example": "import { useMemo, useCallback } from 'react';\n\n// Caching slow calculations:\nconst expensiveValue = useMemo(() => calculateDouble(count), [count]);\n\n// Caching handlers:\nconst handleEvent = useCallback(() => console.log('Clicked'), []);",
+          "title": "useMemo \u0026 useCallback",
+          "content": "These are optimization hooks. \u0060useMemo\u0060 caches (memoizes) the *result* of a slow calculation, so it doesn\u0027t run again unless dependencies change. \u0060useCallback\u0060 caches the *function definition* itself, preventing React from recreating it on every single render.",
+          "example": "import { useMemo, useCallback } from \u0027react\u0027;\n\n// Caching slow calculations:\nconst expensiveValue = useMemo(() =\u003E calculateDouble(count), [count]);\n\n// Caching handlers:\nconst handleEvent = useCallback(() =\u003E console.log(\u0027Clicked\u0027), []);",
           "questions": [
             {
               "id": "react-memo-q1",
@@ -364,20 +364,20 @@
           "why": "They improve performance by stabilizing values and functions across renders.",
           "problem": "Without them, expensive work may run on every render and slow the app down.",
           "realWorldExample": "Memoizing a filtered list or a click handler so it does not change unless inputs change.",
-          "syntax": "const memoizedValue = useMemo(() => compute(data), [data]);",
-          "practicalExample": "import { useMemo, useCallback } from 'react';\n\n// Caching slow calculations:\nconst expensiveValue = useMemo(() => calculateDouble(count), [count]);\n\n// Caching handlers:\nconst handleEvent = useCallback(() => console.log('Clicked'), []);",
+          "syntax": "const memoizedValue = useMemo(() =\u003E compute(data), [data]);",
+          "practicalExample": "import { useMemo, useCallback } from \u0027react\u0027;\n\n// Caching slow calculations:\nconst expensiveValue = useMemo(() =\u003E calculateDouble(count), [count]);\n\n// Caching handlers:\nconst handleEvent = useCallback(() =\u003E console.log(\u0027Clicked\u0027), []);",
           "commonMistakes": "Overusing memoization when it is not needed adds complexity without performance benefit."
         },
         {
           "id": "custom-hooks",
           "title": "Custom Hooks",
-          "content": "Custom hooks let you extract component logic into reusable functions. If two or more components need to perform the same action (like checking online status or fetching API data), you can create a custom function starting with `use` (e.g. `useOnlineStatus`) that wraps existing React hooks.",
-          "example": "import { useState, useEffect } from 'react';\n\nfunction useFetch(url) {\n  const [data, setData] = useState(null);\n  useEffect(() => {\n    fetch(url).then(res => res.json()).then(d => setData(d));\n  }, [url]);\n  return data;\n}",
+          "content": "Custom hooks let you extract component logic into reusable functions. If two or more components need to perform the same action (like checking online status or fetching API data), you can create a custom function starting with \u0060use\u0060 (e.g. \u0060useOnlineStatus\u0060) that wraps existing React hooks.",
+          "example": "import { useState, useEffect } from \u0027react\u0027;\n\nfunction useFetch(url) {\n  const [data, setData] = useState(null);\n  useEffect(() =\u003E {\n    fetch(url).then(res =\u003E res.json()).then(d =\u003E setData(d));\n  }, [url]);\n  return data;\n}",
           "questions": [
             {
               "id": "react-custom-q1",
               "question": "What is a custom hook in React?",
-              "answer": "A custom hook is a reusable JavaScript function starting with 'use' that calls other hooks to bundle shared logic."
+              "answer": "A custom hook is a reusable JavaScript function starting with \u0027use\u0027 that calls other hooks to bundle shared logic."
             },
             {
               "id": "react-custom-q2",
@@ -390,14 +390,14 @@
           "problem": "Without custom hooks, repeated logic can make components larger and harder to maintain.",
           "realWorldExample": "A useFetch hook that fetches data, handles loading, and returns the result.",
           "syntax": "function useFetch(url) {\n  const [data, setData] = useState(null);\n  ...\n}",
-          "practicalExample": "import { useState, useEffect } from 'react';\n\nfunction useFetch(url) {\n  const [data, setData] = useState(null);\n  useEffect(() => {\n    fetch(url).then(res => res.json()).then(d => setData(d));\n  }, [url]);\n  return data;\n}",
+          "practicalExample": "import { useState, useEffect } from \u0027react\u0027;\n\nfunction useFetch(url) {\n  const [data, setData] = useState(null);\n  useEffect(() =\u003E {\n    fetch(url).then(res =\u003E res.json()).then(d =\u003E setData(d));\n  }, [url]);\n  return data;\n}",
           "commonMistakes": "Calling hooks conditionally or not following hook naming rules breaks React rules of hooks."
         },
         {
           "id": "error-boundaries",
           "title": "Error Boundaries",
           "content": "An Error Boundary is a special component that catches JavaScript errors anywhere in its child component tree, logs those errors, and displays a fallback UI instead of crashing the whole webpage. Currently, error boundaries must be class components using lifecycle methods.",
-          "example": "class ErrorBoundary extends React.Component {\n  state = { hasError: false };\n  static getDerivedStateFromError(error) { return { hasError: true }; }\n  render() {\n    if (this.state.hasError) return <h2>Something went wrong.</h2>;\n    return this.props.children;\n  }\n}",
+          "example": "class ErrorBoundary extends React.Component {\n  state = { hasError: false };\n  static getDerivedStateFromError(error) { return { hasError: true }; }\n  render() {\n    if (this.state.hasError) return \u003Ch2\u003ESomething went wrong.\u003C/h2\u003E;\n    return this.props.children;\n  }\n}",
           "questions": [
             {
               "id": "react-err-q1",
@@ -415,14 +415,14 @@
           "problem": "Without error boundaries, a rendering error can make the entire React tree disappear.",
           "realWorldExample": "Showing a friendly error message for a broken widget while the rest of the page still works.",
           "syntax": "class ErrorBoundary extends React.Component {\n  componentDidCatch(error, info) { ... }\n}",
-          "practicalExample": "class ErrorBoundary extends React.Component {\n  state = { hasError: false };\n  static getDerivedStateFromError(error) { return { hasError: true }; }\n  render() {\n    if (this.state.hasError) return <h2>Something went wrong.</h2>;\n    return this.props.children;\n  }\n}",
+          "practicalExample": "class ErrorBoundary extends React.Component {\n  state = { hasError: false };\n  static getDerivedStateFromError(error) { return { hasError: true }; }\n  render() {\n    if (this.state.hasError) return \u003Ch2\u003ESomething went wrong.\u003C/h2\u003E;\n    return this.props.children;\n  }\n}",
           "commonMistakes": "Using error boundaries for data fetching errors rather than render-time exceptions is a common misuse."
         },
         {
           "id": "react-router",
           "title": "React Router (Routing)",
-          "content": "React is built for single-page applications (SPAs), meaning it doesn't reload pages from the server. React Router is the standard library used to switch between different page views (like `/about` or `/profile`) client-side without page refreshes.",
-          "example": "import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      <nav><Link to=\"/about\">About</Link></nav>\n      <Routes>\n        <Route path=\"/about\" element={<AboutPage />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+          "content": "React is built for single-page applications (SPAs), meaning it doesn\u0027t reload pages from the server. React Router is the standard library used to switch between different page views (like \u0060/about\u0060 or \u0060/profile\u0060) client-side without page refreshes.",
+          "example": "import { BrowserRouter, Routes, Route, Link } from \u0027react-router-dom\u0027;\n\nfunction App() {\n  return (\n    \u003CBrowserRouter\u003E\n      \u003Cnav\u003E\u003CLink to=\u0022/about\u0022\u003EAbout\u003C/Link\u003E\u003C/nav\u003E\n      \u003CRoutes\u003E\n        \u003CRoute path=\u0022/about\u0022 element={\u003CAboutPage /\u003E} /\u003E\n      \u003C/Routes\u003E\n    \u003C/BrowserRouter\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-route-q1",
@@ -439,15 +439,15 @@
           "why": "It lets you show different views based on the URL without reloading the page.",
           "problem": "Without routing, every navigation would require a full page refresh or manual view switching.",
           "realWorldExample": "Switching between home, about, and profile screens inside a React app.",
-          "syntax": "<Route path=\"/profile\" element={<Profile />} />",
-          "practicalExample": "import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      <nav><Link to=\"/about\">About</Link></nav>\n      <Routes>\n        <Route path=\"/about\" element={<AboutPage />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+          "syntax": "\u003CRoute path=\u0022/profile\u0022 element={\u003CProfile /\u003E} /\u003E",
+          "practicalExample": "import { BrowserRouter, Routes, Route, Link } from \u0027react-router-dom\u0027;\n\nfunction App() {\n  return (\n    \u003CBrowserRouter\u003E\n      \u003Cnav\u003E\u003CLink to=\u0022/about\u0022\u003EAbout\u003C/Link\u003E\u003C/nav\u003E\n      \u003CRoutes\u003E\n        \u003CRoute path=\u0022/about\u0022 element={\u003CAboutPage /\u003E} /\u003E\n      \u003C/Routes\u003E\n    \u003C/BrowserRouter\u003E\n  );\n}",
           "commonMistakes": "Forgetting to wrap routes in BrowserRouter or using incorrect path matching can break navigation."
         },
         {
           "id": "react-portals",
           "title": "React Portals",
-          "content": "Portals let you render a component's JSX outside its parent DOM element, directly into another spot in the HTML tree (like the end of `<body>`). This is incredibly useful for overlays, tooltips, dialogs, or modals that require escaping parent containers.",
-          "example": "import { createPortal } from 'react-dom';\n\nfunction Modal({ children }) {\n  return createPortal(\n    <div className=\"modal-overlay\">{children}</div>,\n    document.body // Appended directly to body\n  );\n}",
+          "content": "Portals let you render a component\u0027s JSX outside its parent DOM element, directly into another spot in the HTML tree (like the end of \u0060\u003Cbody\u003E\u0060). This is incredibly useful for overlays, tooltips, dialogs, or modals that require escaping parent containers.",
+          "example": "import { createPortal } from \u0027react-dom\u0027;\n\nfunction Modal({ children }) {\n  return createPortal(\n    \u003Cdiv className=\u0022modal-overlay\u0022\u003E{children}\u003C/div\u003E,\n    document.body // Appended directly to body\n  );\n}",
           "questions": [
             {
               "id": "react-portals-q1",
@@ -460,19 +460,19 @@
               "answer": "For UI elements that need to escape parent CSS container restrictions, such as modals, tooltips, and dropdowns."
             }
           ],
-          "definition": "Portals let you render a component’s children into a DOM node outside the main React tree.",
+          "definition": "Portals let you render a component\u2019s children into a DOM node outside the main React tree.",
           "why": "They are useful for overlays, modals, and tooltips that should appear above other content.",
           "problem": "Without portals, positioning modals and overlays correctly can be difficult inside nested containers.",
           "realWorldExample": "Rendering a modal window into a root-level div while keeping the modal logic inside React.",
-          "syntax": "ReactDOM.createPortal(<Modal />, document.getElementById(\"modal-root\"));",
-          "practicalExample": "import { createPortal } from 'react-dom';\n\nfunction Modal({ children }) {\n  return createPortal(\n    <div className=\"modal-overlay\">{children}</div>,\n    document.body // Appended directly to body\n  );\n}",
+          "syntax": "ReactDOM.createPortal(\u003CModal /\u003E, document.getElementById(\u0022modal-root\u0022));",
+          "practicalExample": "import { createPortal } from \u0027react-dom\u0027;\n\nfunction Modal({ children }) {\n  return createPortal(\n    \u003Cdiv className=\u0022modal-overlay\u0022\u003E{children}\u003C/div\u003E,\n    document.body // Appended directly to body\n  );\n}",
           "commonMistakes": "Forgetting to provide the target DOM node or using portals for normal layout content is not ideal."
         },
         {
           "id": "suspense-lazy",
-          "title": "Suspense & Lazy Loading",
-          "content": "Lazy loading helps you split your javascript bundle into smaller chunks that load only when needed. You declare components dynamically using `React.lazy()`, and wrap them in a `<Suspense>` component which displays a fallback UI (like a loading spinner) while the bundle downloads.",
-          "example": "import { lazy, Suspense } from 'react';\nconst HeavyComponent = lazy(() => import('./HeavyComponent'));\n\nfunction App() {\n  return (\n    <Suspense fallback={<div>Loading component...</div>}>\n      <HeavyComponent />\n    </Suspense>\n  );\n}",
+          "title": "Suspense \u0026 Lazy Loading",
+          "content": "Lazy loading helps you split your javascript bundle into smaller chunks that load only when needed. You declare components dynamically using \u0060React.lazy()\u0060, and wrap them in a \u0060\u003CSuspense\u003E\u0060 component which displays a fallback UI (like a loading spinner) while the bundle downloads.",
+          "example": "import { lazy, Suspense } from \u0027react\u0027;\nconst HeavyComponent = lazy(() =\u003E import(\u0027./HeavyComponent\u0027));\n\nfunction App() {\n  return (\n    \u003CSuspense fallback={\u003Cdiv\u003ELoading component...\u003C/div\u003E}\u003E\n      \u003CHeavyComponent /\u003E\n    \u003C/Suspense\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-lazy-q1",
@@ -489,15 +489,15 @@
           "why": "They make apps load faster by splitting code and loading only what is required now.",
           "problem": "Without lazy loading, the entire app can become slow to load on first visit.",
           "realWorldExample": "Loading a dashboard widget only when the user navigates to the dashboard page.",
-          "syntax": "const MyPage = React.lazy(() => import(\"./MyPage\"));",
-          "practicalExample": "import { lazy, Suspense } from 'react';\nconst HeavyComponent = lazy(() => import('./HeavyComponent'));\n\nfunction App() {\n  return (\n    <Suspense fallback={<div>Loading component...</div>}>\n      <HeavyComponent />\n    </Suspense>\n  );\n}",
+          "syntax": "const MyPage = React.lazy(() =\u003E import(\u0022./MyPage\u0022));",
+          "practicalExample": "import { lazy, Suspense } from \u0027react\u0027;\nconst HeavyComponent = lazy(() =\u003E import(\u0027./HeavyComponent\u0027));\n\nfunction App() {\n  return (\n    \u003CSuspense fallback={\u003Cdiv\u003ELoading component...\u003C/div\u003E}\u003E\n      \u003CHeavyComponent /\u003E\n    \u003C/Suspense\u003E\n  );\n}",
           "commonMistakes": "Not wrapping lazy components in a Suspense fallback causes errors during loading."
         },
         {
           "id": "strict-mode",
           "title": "React Strict Mode",
           "content": "StrictMode is a helper component that activates checks and warnings during development. It helps uncover potential bugs, deprecations, and side-effects. In development mode, StrictMode renders components twice to detect state mutations and clean up issues with lifecycle events.",
-          "example": "import React from 'react';\n\nroot.render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);",
+          "example": "import React from \u0027react\u0027;\n\nroot.render(\n  \u003CReact.StrictMode\u003E\n    \u003CApp /\u003E\n  \u003C/React.StrictMode\u003E\n);",
           "questions": [
             {
               "id": "react-strict-q1",
@@ -513,16 +513,16 @@
           "definition": "React Strict Mode helps find unsafe or deprecated code by running extra checks during development.",
           "why": "It catches problems early before they become bugs in production.",
           "problem": "Without Strict Mode, some broken patterns may remain unnoticed until later.",
-          "realWorldExample": "Wrapping the app in <React.StrictMode> during development to see warnings.",
-          "syntax": "<React.StrictMode>\n  <App />\n</React.StrictMode>",
-          "practicalExample": "import React from 'react';\n\nroot.render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);",
+          "realWorldExample": "Wrapping the app in \u003CReact.StrictMode\u003E during development to see warnings.",
+          "syntax": "\u003CReact.StrictMode\u003E\n  \u003CApp /\u003E\n\u003C/React.StrictMode\u003E",
+          "practicalExample": "import React from \u0027react\u0027;\n\nroot.render(\n  \u003CReact.StrictMode\u003E\n    \u003CApp /\u003E\n  \u003C/React.StrictMode\u003E\n);",
           "commonMistakes": "Expecting Strict Mode to change production behavior; it only runs extra checks in development."
         },
         {
           "id": "react-forms",
           "title": "Forms and Validation",
           "content": "In React, form data is typically handled by components using state (controlled components). Standard validation involves checking the state values before submission. For large forms, packages like React Hook Form or Formik are used to manage complex validation, errors, and rendering behavior efficiently without unnecessary re-renders.",
-          "example": "import { useState } from 'react';\n\nfunction SimpleForm() {\n  const [email, setEmail] = useState('');\n  const [error, setError] = useState('');\n\n  const handleSubmit = (e) => {\n    e.preventDefault();\n    if (!email.includes('@')) {\n      setError('Invalid email address');\n    } else {\n      setError('');\n      alert('Submitted: ' + email);\n    }\n  };\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <input value={email} onChange={e => setEmail(e.target.value)} />\n      {error && <span style={{color: 'red'}}>{error}</span>}\n      <button type=\"submit\">Submit</button>\n    </form>\n  );\n}",
+          "example": "import { useState } from \u0027react\u0027;\n\nfunction SimpleForm() {\n  const [email, setEmail] = useState(\u0027\u0027);\n  const [error, setError] = useState(\u0027\u0027);\n\n  const handleSubmit = (e) =\u003E {\n    e.preventDefault();\n    if (!email.includes(\u0027@\u0027)) {\n      setError(\u0027Invalid email address\u0027);\n    } else {\n      setError(\u0027\u0027);\n      alert(\u0027Submitted: \u0027 \u002B email);\n    }\n  };\n\n  return (\n    \u003Cform onSubmit={handleSubmit}\u003E\n      \u003Cinput value={email} onChange={e =\u003E setEmail(e.target.value)} /\u003E\n      {error \u0026\u0026 \u003Cspan style={{color: \u0027red\u0027}}\u003E{error}\u003C/span\u003E}\n      \u003Cbutton type=\u0022submit\u0022\u003ESubmit\u003C/button\u003E\n    \u003C/form\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-forms-q1",
@@ -532,22 +532,22 @@
             {
               "id": "react-forms-q2",
               "question": "How do you prevent a form from reloading the browser page on submit?",
-              "answer": "By calling e.preventDefault() inside the form's onSubmit event handler."
+              "answer": "By calling e.preventDefault() inside the form\u0027s onSubmit event handler."
             }
           ],
           "definition": "Forms in React let users submit data through inputs, checkboxes, and buttons.",
           "why": "They are the standard way to gather user input in an app.",
           "problem": "Without forms, users cannot enter and submit data safely in a React app.",
           "realWorldExample": "A login form that captures email and password and submits them to a server.",
-          "syntax": "<form onSubmit={handleSubmit}>...</form>",
-          "practicalExample": "import { useState } from 'react';\n\nfunction SimpleForm() {\n  const [email, setEmail] = useState('');\n  const [error, setError] = useState('');\n\n  const handleSubmit = (e) => {\n    e.preventDefault();\n    if (!email.includes('@')) {\n      setError('Invalid email address');\n    } else {\n      setError('');\n      alert('Submitted: ' + email);\n    }\n  };\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <input value={email} onChange={e => setEmail(e.target.value)} />\n      {error && <span style={{color: 'red'}}>{error}</span>}\n      <button type=\"submit\">Submit</button>\n    </form>\n  );\n}",
+          "syntax": "\u003Cform onSubmit={handleSubmit}\u003E...\u003C/form\u003E",
+          "practicalExample": "import { useState } from \u0027react\u0027;\n\nfunction SimpleForm() {\n  const [email, setEmail] = useState(\u0027\u0027);\n  const [error, setError] = useState(\u0027\u0027);\n\n  const handleSubmit = (e) =\u003E {\n    e.preventDefault();\n    if (!email.includes(\u0027@\u0027)) {\n      setError(\u0027Invalid email address\u0027);\n    } else {\n      setError(\u0027\u0027);\n      alert(\u0027Submitted: \u0027 \u002B email);\n    }\n  };\n\n  return (\n    \u003Cform onSubmit={handleSubmit}\u003E\n      \u003Cinput value={email} onChange={e =\u003E setEmail(e.target.value)} /\u003E\n      {error \u0026\u0026 \u003Cspan style={{color: \u0027red\u0027}}\u003E{error}\u003C/span\u003E}\n      \u003Cbutton type=\u0022submit\u0022\u003ESubmit\u003C/button\u003E\n    \u003C/form\u003E\n  );\n}",
           "commonMistakes": "Not preventing default form submission or not validating input are common form bugs."
         },
         {
           "id": "state-management",
           "title": "State Management",
           "content": "As applications grow, passing state down through props (prop drilling) becomes difficult. While React Context is great for static global data (like themes), high-frequency state updates can trigger unnecessary renders. External state libraries like Redux Toolkit or Zustand provide centralized stores with selectors, optimizing rendering performance and decoupling business logic from UI components.",
-          "example": "// Example of a simple Zustand store:\nimport { create } from 'zustand';\n\nconst useStore = create((set) => ({\n  bears: 0,\n  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),\n  removeAllBears: () => set({ bears: 0 }),\n}));\n\nfunction BearCounter() {\n  const bears = useStore((state) => state.bears);\n  const increase = useStore((state) => state.increasePopulation);\n  return <button onClick={increase}>{bears} bears here. Add one!</button>;\n}",
+          "example": "// Example of a simple Zustand store:\nimport { create } from \u0027zustand\u0027;\n\nconst useStore = create((set) =\u003E ({\n  bears: 0,\n  increasePopulation: () =\u003E set((state) =\u003E ({ bears: state.bears \u002B 1 })),\n  removeAllBears: () =\u003E set({ bears: 0 }),\n}));\n\nfunction BearCounter() {\n  const bears = useStore((state) =\u003E state.bears);\n  const increase = useStore((state) =\u003E state.increasePopulation);\n  return \u003Cbutton onClick={increase}\u003E{bears} bears here. Add one!\u003C/button\u003E;\n}",
           "questions": [
             {
               "id": "react-state-q1",
@@ -565,14 +565,14 @@
           "problem": "Poor state management leads to confusing or inconsistent screens.",
           "realWorldExample": "Keeping track of whether a user is logged in and showing the right menu items.",
           "syntax": "const [data, setData] = useState(null);",
-          "practicalExample": "// Example of a simple Zustand store:\nimport { create } from 'zustand';\n\nconst useStore = create((set) => ({\n  bears: 0,\n  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),\n  removeAllBears: () => set({ bears: 0 }),\n}));\n\nfunction BearCounter() {\n  const bears = useStore((state) => state.bears);\n  const increase = useStore((state) => state.increasePopulation);\n  return <button onClick={increase}>{bears} bears here. Add one!</button>;\n}",
+          "practicalExample": "// Example of a simple Zustand store:\nimport { create } from \u0027zustand\u0027;\n\nconst useStore = create((set) =\u003E ({\n  bears: 0,\n  increasePopulation: () =\u003E set((state) =\u003E ({ bears: state.bears \u002B 1 })),\n  removeAllBears: () =\u003E set({ bears: 0 }),\n}));\n\nfunction BearCounter() {\n  const bears = useStore((state) =\u003E state.bears);\n  const increase = useStore((state) =\u003E state.increasePopulation);\n  return \u003Cbutton onClick={increase}\u003E{bears} bears here. Add one!\u003C/button\u003E;\n}",
           "commonMistakes": "Putting too much state in one component or using props to pass data too deeply are common issues."
         },
         {
           "id": "data-fetching",
           "title": "Data Fetching and Caching",
           "content": "Data fetching is a side effect often handled inside a useEffect hook. However, manual fetching requires managing loading, error, and cached states. Libraries like TanStack Query (React Query) automate this by caching server data, syncing updates, refetching on window focus, and managing queries and mutations seamlessly.",
-          "example": "import { useQuery } from '@tanstack/react-query';\n\nfunction UserProfile() {\n  const { isPending, error, data } = useQuery({\n    queryKey: ['userData'],\n    queryFn: () => fetch('https://api.github.com/users/octocat').then(res => res.json())\n  });\n\n  if (isPending) return 'Loading...';\n  if (error) return 'An error occurred: ' + error.message;\n  return <h1>{data.name}</h1>;\n}",
+          "example": "import { useQuery } from \u0027@tanstack/react-query\u0027;\n\nfunction UserProfile() {\n  const { isPending, error, data } = useQuery({\n    queryKey: [\u0027userData\u0027],\n    queryFn: () =\u003E fetch(\u0027https://api.github.com/users/octocat\u0027).then(res =\u003E res.json())\n  });\n\n  if (isPending) return \u0027Loading...\u0027;\n  if (error) return \u0027An error occurred: \u0027 \u002B error.message;\n  return \u003Ch1\u003E{data.name}\u003C/h1\u003E;\n}",
           "questions": [
             {
               "id": "react-fetch-q1",
@@ -589,15 +589,15 @@
           "why": "Most apps need data from servers to show current content or user information.",
           "problem": "Without fetching, the app cannot use live data or update based on server changes.",
           "realWorldExample": "Loading a list of posts from an API when a page first opens.",
-          "syntax": "fetch(\"/api/posts\").then(res => res.json()).then(setPosts);",
-          "practicalExample": "import { useQuery } from '@tanstack/react-query';\n\nfunction UserProfile() {\n  const { isPending, error, data } = useQuery({\n    queryKey: ['userData'],\n    queryFn: () => fetch('https://api.github.com/users/octocat').then(res => res.json())\n  });\n\n  if (isPending) return 'Loading...';\n  if (error) return 'An error occurred: ' + error.message;\n  return <h1>{data.name}</h1>;\n}",
+          "syntax": "fetch(\u0022/api/posts\u0022).then(res =\u003E res.json()).then(setPosts);",
+          "practicalExample": "import { useQuery } from \u0027@tanstack/react-query\u0027;\n\nfunction UserProfile() {\n  const { isPending, error, data } = useQuery({\n    queryKey: [\u0027userData\u0027],\n    queryFn: () =\u003E fetch(\u0027https://api.github.com/users/octocat\u0027).then(res =\u003E res.json())\n  });\n\n  if (isPending) return \u0027Loading...\u0027;\n  if (error) return \u0027An error occurred: \u0027 \u002B error.message;\n  return \u003Ch1\u003E{data.name}\u003C/h1\u003E;\n}",
           "commonMistakes": "Not handling loading and error states or repeating fetch calls on every render are common mistakes."
         },
         {
           "id": "styling",
           "title": "Styling in React",
           "content": "React supports multiple styling approaches. Inline styles use JavaScript objects. Standard CSS is global. CSS Modules scope CSS classes locally to prevent class name clashes. CSS-in-JS (like Styled Components) lets you write CSS inside components using tag template literals, making styles dynamic based on props.",
-          "example": "// Button.module.css:\n// .error { background: red; }\n\nimport styles from './Button.module.css';\nimport styled from 'styled-components';\n\n// Styled Component\nconst StyledBtn = styled.button`\n  background: ${props => props.primary ? 'blue' : 'gray'};\n  color: white;\n`;\n\nfunction Button() {\n  return (\n    <>\n      <button className={styles.error}>Module Error</button>\n      <StyledBtn primary>Styled Button</StyledBtn>\n    </>\n  );\n}",
+          "example": "// Button.module.css:\n// .error { background: red; }\n\nimport styles from \u0027./Button.module.css\u0027;\nimport styled from \u0027styled-components\u0027;\n\n// Styled Component\nconst StyledBtn = styled.button\u0060\n  background: ${props =\u003E props.primary ? \u0027blue\u0027 : \u0027gray\u0027};\n  color: white;\n\u0060;\n\nfunction Button() {\n  return (\n    \u003C\u003E\n      \u003Cbutton className={styles.error}\u003EModule Error\u003C/button\u003E\n      \u003CStyledBtn primary\u003EStyled Button\u003C/StyledBtn\u003E\n    \u003C/\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-styling-q1",
@@ -614,15 +614,15 @@
           "why": "Good styling makes your app easier to use and more visually appealing.",
           "problem": "Without styling, the UI looks plain and hard to read.",
           "realWorldExample": "Changing a button color based on whether it is active or disabled.",
-          "syntax": "<button className=\"primary\">Save</button>",
-          "practicalExample": "// Button.module.css:\n// .error { background: red; }\n\nimport styles from './Button.module.css';\nimport styled from 'styled-components';\n\n// Styled Component\nconst StyledBtn = styled.button`\n  background: ${props => props.primary ? 'blue' : 'gray'};\n  color: white;\n`;\n\nfunction Button() {\n  return (\n    <>\n      <button className={styles.error}>Module Error</button>\n      <StyledBtn primary>Styled Button</StyledBtn>\n    </>\n  );\n}",
+          "syntax": "\u003Cbutton className=\u0022primary\u0022\u003ESave\u003C/button\u003E",
+          "practicalExample": "// Button.module.css:\n// .error { background: red; }\n\nimport styles from \u0027./Button.module.css\u0027;\nimport styled from \u0027styled-components\u0027;\n\n// Styled Component\nconst StyledBtn = styled.button\u0060\n  background: ${props =\u003E props.primary ? \u0027blue\u0027 : \u0027gray\u0027};\n  color: white;\n\u0060;\n\nfunction Button() {\n  return (\n    \u003C\u003E\n      \u003Cbutton className={styles.error}\u003EModule Error\u003C/button\u003E\n      \u003CStyledBtn primary\u003EStyled Button\u003C/StyledBtn\u003E\n    \u003C/\u003E\n  );\n}",
           "commonMistakes": "Using class instead of className or mixing styles inconsistently can cause layout issues."
         },
         {
           "id": "testing",
           "title": "Testing React Components",
-          "content": "React components are tested using unit and integration testing frameworks. Vitest (or Jest) is the test runner, while React Testing Library (RTL) provides utilities to render components and query the DOM. RTL encourages testing components from the user's perspective rather than internal state details.",
-          "example": "import { render, screen } from '@testing-library/react';\nimport userEvent from '@testing-library/user-event';\nimport { Counter } from './Counter';\n\ntest('increments counter on click', async () => {\n  render(<Counter />);\n  const button = screen.getByRole('button');\n  expect(button).toHaveTextContent('Count is: 0');\n  await userEvent.click(button);\n  expect(button).toHaveTextContent('Count is: 1');\n});",
+          "content": "React components are tested using unit and integration testing frameworks. Vitest (or Jest) is the test runner, while React Testing Library (RTL) provides utilities to render components and query the DOM. RTL encourages testing components from the user\u0027s perspective rather than internal state details.",
+          "example": "import { render, screen } from \u0027@testing-library/react\u0027;\nimport userEvent from \u0027@testing-library/user-event\u0027;\nimport { Counter } from \u0027./Counter\u0027;\n\ntest(\u0027increments counter on click\u0027, async () =\u003E {\n  render(\u003CCounter /\u003E);\n  const button = screen.getByRole(\u0027button\u0027);\n  expect(button).toHaveTextContent(\u0027Count is: 0\u0027);\n  await userEvent.click(button);\n  expect(button).toHaveTextContent(\u0027Count is: 1\u0027);\n});",
           "questions": [
             {
               "id": "react-testing-q1",
@@ -639,15 +639,15 @@
           "why": "It prevents bugs and makes refactoring safer.",
           "problem": "Without tests, small changes can accidentally break existing functionality.",
           "realWorldExample": "Checking that a button click updates the screen as expected.",
-          "syntax": "expect(screen.getByText(\"Submit\")).toBeInTheDocument();",
-          "practicalExample": "import { render, screen } from '@testing-library/react';\nimport userEvent from '@testing-library/user-event';\nimport { Counter } from './Counter';\n\ntest('increments counter on click', async () => {\n  render(<Counter />);\n  const button = screen.getByRole('button');\n  expect(button).toHaveTextContent('Count is: 0');\n  await userEvent.click(button);\n  expect(button).toHaveTextContent('Count is: 1');\n});",
+          "syntax": "expect(screen.getByText(\u0022Submit\u0022)).toBeInTheDocument();",
+          "practicalExample": "import { render, screen } from \u0027@testing-library/react\u0027;\nimport userEvent from \u0027@testing-library/user-event\u0027;\nimport { Counter } from \u0027./Counter\u0027;\n\ntest(\u0027increments counter on click\u0027, async () =\u003E {\n  render(\u003CCounter /\u003E);\n  const button = screen.getByRole(\u0027button\u0027);\n  expect(button).toHaveTextContent(\u0027Count is: 0\u0027);\n  await userEvent.click(button);\n  expect(button).toHaveTextContent(\u0027Count is: 1\u0027);\n});",
           "commonMistakes": "Testing implementation details instead of user-visible behavior makes tests fragile."
         },
         {
           "id": "react-18-19",
-          "title": "React 18/19 & Server Components",
+          "title": "React 18/19 \u0026 Server Components",
           "content": "React 18 introduced Concurrent Rendering, useTransition, and useDeferredValue to keep UIs responsive during expensive updates. React 19 builds on this with Server Components (RSC), which run exclusively on the server to reduce bundle sizes and improve loading speeds, alongside Actions for simpler form submissions and state sync.",
-          "example": "// React 19 Client Action Example:\nimport { useTransition } from 'react';\n\nfunction UpdateName() {\n  const [isPending, startTransition] = useTransition();\n  \n  const handleSubmit = (formData) => {\n    startTransition(async () => {\n      await updateNameApi(formData.get(\"name\"));\n    });\n  };\n\n  return (\n    <form action={handleSubmit}>\n      <input name=\"name\" />\n      <button type=\"submit\" disabled={isPending}>Update</button>\n    </form>\n  );\n}",
+          "example": "// React 19 Client Action Example:\nimport { useTransition } from \u0027react\u0027;\n\nfunction UpdateName() {\n  const [isPending, startTransition] = useTransition();\n  \n  const handleSubmit = (formData) =\u003E {\n    startTransition(async () =\u003E {\n      await updateNameApi(formData.get(\u0022name\u0022));\n    });\n  };\n\n  return (\n    \u003Cform action={handleSubmit}\u003E\n      \u003Cinput name=\u0022name\u0022 /\u003E\n      \u003Cbutton type=\u0022submit\u0022 disabled={isPending}\u003EUpdate\u003C/button\u003E\n    \u003C/form\u003E\n  );\n}",
           "questions": [
             {
               "id": "react-18-19-q1",
@@ -664,8 +664,8 @@
           "why": "They make React apps faster and more responsive with better support for server rendering.",
           "problem": "Older versions can feel slower and harder to scale for modern UI patterns.",
           "realWorldExample": "Rendering pages on the server and hydrating them on the client for faster load times.",
-          "syntax": "const root = createRoot(container); root.render(<App />);",
-          "practicalExample": "// React 19 Client Action Example:\nimport { useTransition } from 'react';\n\nfunction UpdateName() {\n  const [isPending, startTransition] = useTransition();\n  \n  const handleSubmit = (formData) => {\n    startTransition(async () => {\n      await updateNameApi(formData.get(\"name\"));\n    });\n  };\n\n  return (\n    <form action={handleSubmit}>\n      <input name=\"name\" />\n      <button type=\"submit\" disabled={isPending}>Update</button>\n    </form>\n  );\n}",
+          "syntax": "const root = createRoot(container); root.render(\u003CApp /\u003E);",
+          "practicalExample": "// React 19 Client Action Example:\nimport { useTransition } from \u0027react\u0027;\n\nfunction UpdateName() {\n  const [isPending, startTransition] = useTransition();\n  \n  const handleSubmit = (formData) =\u003E {\n    startTransition(async () =\u003E {\n      await updateNameApi(formData.get(\u0022name\u0022));\n    });\n  };\n\n  return (\n    \u003Cform action={handleSubmit}\u003E\n      \u003Cinput name=\u0022name\u0022 /\u003E\n      \u003Cbutton type=\u0022submit\u0022 disabled={isPending}\u003EUpdate\u003C/button\u003E\n    \u003C/form\u003E\n  );\n}",
           "commonMistakes": "Expecting all new behavior in production without reading the upgrade guide may cause surprises."
         }
       ]
@@ -678,7 +678,7 @@
           "id": "dotnet-overview",
           "title": "Dot Net Overview",
           "content": "The .NET platform is a developer platform for building many types of applications. It supports languages like C#, F#, and Visual Basic.",
-          "example": "using System;\nclass Program { static void Main() { Console.WriteLine(\"Hello from .NET\"); } }",
+          "example": "using System;\nclass Program { static void Main() { Console.WriteLine(\u0022Hello from .NET\u0022); } }",
           "questions": [
             {
               "id": "dotnet-overview-q1",
@@ -691,7 +691,7 @@
           "problem": "Without .NET, you would need different stacks for each platform and less shared code.",
           "realWorldExample": "Building a web API and a console app using the same .NET libraries.",
           "syntax": "dotnet new console -n MyApp",
-          "practicalExample": "using System;\nclass Program { static void Main() { Console.WriteLine(\"Hello from .NET\"); } }",
+          "practicalExample": "using System;\nclass Program { static void Main() { Console.WriteLine(\u0022Hello from .NET\u0022); } }",
           "commonMistakes": "Not understanding the difference between .NET runtime and language features can be confusing."
         },
         {
@@ -718,7 +718,7 @@
           "id": "dotnet-di",
           "title": "Dependency Injection",
           "content": ".NET has built-in support for Dependency Injection (DI). DI is a design pattern that achieves Inversion of Control (IoC) between classes and their dependencies. Services can be registered with three lifetimes:\n1. **Transient**: Created each time they are requested.\n2. **Scoped**: Created once per client request (e.g. per HTTP request in a web app).\n3. **Singleton**: Created once and shared globally.",
-          "example": "public interface IMyService { string GetGuid(); }\npublic class MyService : IMyService {\n    private string _id = Guid.NewGuid().ToString();\n    public string GetGuid() => _id;\n}\n\n// Registered in Program.cs:\nbuilder.Services.AddTransient<IMyService, MyService>();",
+          "example": "public interface IMyService { string GetGuid(); }\npublic class MyService : IMyService {\n    private string _id = Guid.NewGuid().ToString();\n    public string GetGuid() =\u003E _id;\n}\n\n// Registered in Program.cs:\nbuilder.Services.AddTransient\u003CIMyService, MyService\u003E();",
           "questions": [
             {
               "id": "dotnet-di-q1",
@@ -735,15 +735,15 @@
           "why": "It makes code easier to test and swap out implementations.",
           "problem": "Without DI, classes become tightly coupled and hard to change.",
           "realWorldExample": "Injecting a database service into a controller instead of new-ing it inside the controller.",
-          "syntax": "services.AddTransient<IMyService, MyService>();",
-          "practicalExample": "public interface IMyService { string GetGuid(); }\npublic class MyService : IMyService {\n    private string _id = Guid.NewGuid().ToString();\n    public string GetGuid() => _id;\n}\n\n// Registered in Program.cs:\nbuilder.Services.AddTransient<IMyService, MyService>();",
+          "syntax": "services.AddTransient\u003CIMyService, MyService\u003E();",
+          "practicalExample": "public interface IMyService { string GetGuid(); }\npublic class MyService : IMyService {\n    private string _id = Guid.NewGuid().ToString();\n    public string GetGuid() =\u003E _id;\n}\n\n// Registered in Program.cs:\nbuilder.Services.AddTransient\u003CIMyService, MyService\u003E();",
           "commonMistakes": "Registering the wrong service lifetime or forgetting to register a dependency causes runtime failures."
         },
         {
           "id": "dotnet-linq",
           "title": "LINQ (Language Integrated Query)",
           "content": "LINQ provides a uniform way to query data from collections, databases, and XML files. It supports two syntaxes: Query Syntax (SQL-like) and Method Syntax (using lambda expressions). LINQ utilizes Deferred Execution, meaning queries are not executed when defined, but rather when they are iterated over (e.g., in a foreach loop or by calling ToList()).",
-          "example": "var scores = new List<int> { 97, 92, 81, 60 };\n\n// Method syntax (recommended):\nvar highScores = scores.Where(s => s > 80).OrderByDescending(s => s);\n\nforeach (var score in highScores)\n{\n    Console.WriteLine(score); // Executed here\n}",
+          "example": "var scores = new List\u003Cint\u003E { 97, 92, 81, 60 };\n\n// Method syntax (recommended):\nvar highScores = scores.Where(s =\u003E s \u003E 80).OrderByDescending(s =\u003E s);\n\nforeach (var score in highScores)\n{\n    Console.WriteLine(score); // Executed here\n}",
           "questions": [
             {
               "id": "dotnet-linq-q1",
@@ -760,15 +760,15 @@
           "why": "It makes filtering, sorting, and searching data simpler and more expressive.",
           "problem": "Without LINQ, data manipulation requires more manual loops and boilerplate code.",
           "realWorldExample": "Selecting users with ages over 18 from a list of user objects.",
-          "syntax": "var adults = users.Where(u => u.Age > 18);",
-          "practicalExample": "var scores = new List<int> { 97, 92, 81, 60 };\n\n// Method syntax (recommended):\nvar highScores = scores.Where(s => s > 80).OrderByDescending(s => s);\n\nforeach (var score in highScores)\n{\n    Console.WriteLine(score); // Executed here\n}",
+          "syntax": "var adults = users.Where(u =\u003E u.Age \u003E 18);",
+          "practicalExample": "var scores = new List\u003Cint\u003E { 97, 92, 81, 60 };\n\n// Method syntax (recommended):\nvar highScores = scores.Where(s =\u003E s \u003E 80).OrderByDescending(s =\u003E s);\n\nforeach (var score in highScores)\n{\n    Console.WriteLine(score); // Executed here\n}",
           "commonMistakes": "Using query syntax and method syntax inconsistently or forcing immediate execution can cause unexpected behavior."
         },
         {
           "id": "dotnet-efcore",
           "title": "Entity Framework Core (EF Core)",
-          "content": "EF Core is a lightweight, cross-platform Object-Relational Mapper (ORM) for .NET. It lets you interact with databases using C# objects. The `DbContext` class coordinates EF database operations, tracking changes so they can be persisted via `SaveChanges()`. You use Code-First Migrations to keep the database schema in sync with your C# models.",
-          "example": "public class AppDbContext : DbContext\n{\n    public DbSet<Product> Products { get; set; }\n    protected override void OnConfiguring(DbContextOptionsBuilder o) \n        => o.UseSqlServer(\"Server=myServer;Database=myDb;\");\n}\n\n// Usage:\nusing var db = new AppDbContext();\ndb.Products.Add(new Product { Name = \"Laptop\" });\ndb.SaveChanges();",
+          "content": "EF Core is a lightweight, cross-platform Object-Relational Mapper (ORM) for .NET. It lets you interact with databases using C# objects. The \u0060DbContext\u0060 class coordinates EF database operations, tracking changes so they can be persisted via \u0060SaveChanges()\u0060. You use Code-First Migrations to keep the database schema in sync with your C# models.",
+          "example": "public class AppDbContext : DbContext\n{\n    public DbSet\u003CProduct\u003E Products { get; set; }\n    protected override void OnConfiguring(DbContextOptionsBuilder o) \n        =\u003E o.UseSqlServer(\u0022Server=myServer;Database=myDb;\u0022);\n}\n\n// Usage:\nusing var db = new AppDbContext();\ndb.Products.Add(new Product { Name = \u0022Laptop\u0022 });\ndb.SaveChanges();",
           "questions": [
             {
               "id": "dotnet-efcore-q1",
@@ -786,14 +786,14 @@
           "problem": "Without EF Core, database code becomes repetitive and harder to maintain.",
           "realWorldExample": "Loading products from a database into a list of Product objects.",
           "syntax": "dbContext.Products.ToList();",
-          "practicalExample": "public class AppDbContext : DbContext\n{\n    public DbSet<Product> Products { get; set; }\n    protected override void OnConfiguring(DbContextOptionsBuilder o) \n        => o.UseSqlServer(\"Server=myServer;Database=myDb;\");\n}\n\n// Usage:\nusing var db = new AppDbContext();\ndb.Products.Add(new Product { Name = \"Laptop\" });\ndb.SaveChanges();",
+          "practicalExample": "public class AppDbContext : DbContext\n{\n    public DbSet\u003CProduct\u003E Products { get; set; }\n    protected override void OnConfiguring(DbContextOptionsBuilder o) \n        =\u003E o.UseSqlServer(\u0022Server=myServer;Database=myDb;\u0022);\n}\n\n// Usage:\nusing var db = new AppDbContext();\ndb.Products.Add(new Product { Name = \u0022Laptop\u0022 });\ndb.SaveChanges();",
           "commonMistakes": "Ignoring change tracking or using lazy loading without understanding it can lead to performance issues."
         },
         {
           "id": "dotnet-async",
           "title": "Asynchronous Programming (async/await)",
-          "content": "Asynchronous programming in .NET uses `async` and `await` keywords with `Task` objects to write non-blocking code. This prevents threads from being blocked during long operations (like database or network calls), letting the application scale and handle more concurrent requests.",
-          "example": "public async Task<string> FetchDataAsync()\n{\n    using HttpClient client = new();\n    // Thread is released to do other work while waiting for response\n    string data = await client.GetStringAsync(\"https://api.github.com\");\n    return data;\n}",
+          "content": "Asynchronous programming in .NET uses \u0060async\u0060 and \u0060await\u0060 keywords with \u0060Task\u0060 objects to write non-blocking code. This prevents threads from being blocked during long operations (like database or network calls), letting the application scale and handle more concurrent requests.",
+          "example": "public async Task\u003Cstring\u003E FetchDataAsync()\n{\n    using HttpClient client = new();\n    // Thread is released to do other work while waiting for response\n    string data = await client.GetStringAsync(\u0022https://api.github.com\u0022);\n    return data;\n}",
           "questions": [
             {
               "id": "dotnet-async-q1",
@@ -810,15 +810,15 @@
           "why": "It keeps applications responsive while waiting for I/O like web requests or database calls.",
           "problem": "Without async, long-running work would freeze the app or server thread.",
           "realWorldExample": "Calling a web API with await instead of blocking the thread until the response arrives.",
-          "syntax": "public async Task<MyData> GetDataAsync() { ... }",
-          "practicalExample": "public async Task<string> FetchDataAsync()\n{\n    using HttpClient client = new();\n    // Thread is released to do other work while waiting for response\n    string data = await client.GetStringAsync(\"https://api.github.com\");\n    return data;\n}",
+          "syntax": "public async Task\u003CMyData\u003E GetDataAsync() { ... }",
+          "practicalExample": "public async Task\u003Cstring\u003E FetchDataAsync()\n{\n    using HttpClient client = new();\n    // Thread is released to do other work while waiting for response\n    string data = await client.GetStringAsync(\u0022https://api.github.com\u0022);\n    return data;\n}",
           "commonMistakes": "Using async without await or returning void from async methods can cause subtle bugs."
         },
         {
           "id": "dotnet-gc",
-          "title": "Memory Management & GC",
-          "content": ".NET uses automatic memory management handled by the Garbage Collector (GC). The GC allocates and releases memory for managed objects on the heap. Heap objects are split into three generations (Gen 0 for short-lived, Gen 1, and Gen 2 for long-lived objects). Unmanaged resources (like files, databases, network sockets) must be manually released using the `IDisposable` interface and `using` statements.",
-          "example": "// The using statement automatically calls Dispose()\nusing (var writer = new StreamWriter(\"file.txt\"))\n{\n    writer.WriteLine(\"Hello World\");\n}",
+          "title": "Memory Management \u0026 GC",
+          "content": ".NET uses automatic memory management handled by the Garbage Collector (GC). The GC allocates and releases memory for managed objects on the heap. Heap objects are split into three generations (Gen 0 for short-lived, Gen 1, and Gen 2 for long-lived objects). Unmanaged resources (like files, databases, network sockets) must be manually released using the \u0060IDisposable\u0060 interface and \u0060using\u0060 statements.",
+          "example": "// The using statement automatically calls Dispose()\nusing (var writer = new StreamWriter(\u0022file.txt\u0022))\n{\n    writer.WriteLine(\u0022Hello World\u0022);\n}",
           "questions": [
             {
               "id": "dotnet-gc-q1",
@@ -836,7 +836,7 @@
           "problem": "Without GC, developers would have to free memory manually and risk serious bugs.",
           "realWorldExample": "Objects created during request processing are cleaned up after the request ends.",
           "syntax": "GC.Collect(); // usually not needed",
-          "practicalExample": "// The using statement automatically calls Dispose()\nusing (var writer = new StreamWriter(\"file.txt\"))\n{\n    writer.WriteLine(\"Hello World\");\n}",
+          "practicalExample": "// The using statement automatically calls Dispose()\nusing (var writer = new StreamWriter(\u0022file.txt\u0022))\n{\n    writer.WriteLine(\u0022Hello World\u0022);\n}",
           "commonMistakes": "Forcing garbage collection or holding references too long can hurt performance."
         }
       ]
@@ -889,7 +889,7 @@
           "id": "dotnetcore-middleware",
           "title": "Middleware Architecture",
           "content": "Middleware components are software parts assembled into an application pipeline to handle requests and responses. Each component can perform work before and after the next component is called. The order of registration in Program.cs is critical as it dictates the exact sequence in which requests pass through the application.",
-          "example": "// Custom Middleware Definition:\npublic class MyMiddleware\n{\n    private readonly RequestDelegate _next;\n    public MyMiddleware(RequestDelegate next) => _next = next;\n\n    public async Task InvokeAsync(HttpContext context)\n    {\n        // Work done before next middleware\n        await _next(context);\n        // Work done after next middleware\n    }\n}",
+          "example": "// Custom Middleware Definition:\npublic class MyMiddleware\n{\n    private readonly RequestDelegate _next;\n    public MyMiddleware(RequestDelegate next) =\u003E _next = next;\n\n    public async Task InvokeAsync(HttpContext context)\n    {\n        // Work done before next middleware\n        await _next(context);\n        // Work done after next middleware\n    }\n}",
           "questions": [
             {
               "id": "dotnetcore-mw-q1",
@@ -906,15 +906,15 @@
           "why": "They let you add logging, authentication, and response handling in a shared pipeline.",
           "problem": "Without middleware, request handling becomes harder to reuse and organize.",
           "realWorldExample": "Logging every incoming request and then passing control to the next middleware.",
-          "syntax": "app.Use(async (context, next) => { await next(); });",
-          "practicalExample": "// Custom Middleware Definition:\npublic class MyMiddleware\n{\n    private readonly RequestDelegate _next;\n    public MyMiddleware(RequestDelegate next) => _next = next;\n\n    public async Task InvokeAsync(HttpContext context)\n    {\n        // Work done before next middleware\n        await _next(context);\n        // Work done after next middleware\n    }\n}",
+          "syntax": "app.Use(async (context, next) =\u003E { await next(); });",
+          "practicalExample": "// Custom Middleware Definition:\npublic class MyMiddleware\n{\n    private readonly RequestDelegate _next;\n    public MyMiddleware(RequestDelegate next) =\u003E _next = next;\n\n    public async Task InvokeAsync(HttpContext context)\n    {\n        // Work done before next middleware\n        await _next(context);\n        // Work done after next middleware\n    }\n}",
           "commonMistakes": "Using middleware in the wrong order or forgetting to call next() blocks requests."
         },
         {
           "id": "dotnetcore-config",
-          "title": "Configuration & Options Pattern",
-          "content": "ASP.NET Core supports multiple configuration providers, loading settings from appsettings.json, environment variables, command-line arguments, and User Secrets. The Options Pattern uses strongly-typed C# classes to represent configuration settings. By registering settings with the `IOptions<T>` interface, you inject values using DI securely.",
-          "example": "// appsettings.json:\n// { \"Smtp\": { \"Host\": \"smtp.mail.com\" } }\n\npublic class SmtpSettings { public string Host { get; set; } }\n\n// Injection in Controller:\npublic class HomeController : Controller\n{\n    private readonly SmtpSettings _settings;\n    public HomeController(IOptions<SmtpSettings> options) => _settings = options.Value;\n}",
+          "title": "Configuration \u0026 Options Pattern",
+          "content": "ASP.NET Core supports multiple configuration providers, loading settings from appsettings.json, environment variables, command-line arguments, and User Secrets. The Options Pattern uses strongly-typed C# classes to represent configuration settings. By registering settings with the \u0060IOptions\u003CT\u003E\u0060 interface, you inject values using DI securely.",
+          "example": "// appsettings.json:\n// { \u0022Smtp\u0022: { \u0022Host\u0022: \u0022smtp.mail.com\u0022 } }\n\npublic class SmtpSettings { public string Host { get; set; } }\n\n// Injection in Controller:\npublic class HomeController : Controller\n{\n    private readonly SmtpSettings _settings;\n    public HomeController(IOptions\u003CSmtpSettings\u003E options) =\u003E _settings = options.Value;\n}",
           "questions": [
             {
               "id": "dotnetcore-cfg-q1",
@@ -931,15 +931,15 @@
           "why": "It keeps environment-specific values separate from application code.",
           "problem": "Hardcoding settings makes it difficult to deploy the same app to different environments.",
           "realWorldExample": "Reading a database connection string from appsettings.json instead of embedding it in code.",
-          "syntax": "builder.Configuration[\"ConnectionStrings:DefaultConnection\"]",
-          "practicalExample": "// appsettings.json:\n// { \"Smtp\": { \"Host\": \"smtp.mail.com\" } }\n\npublic class SmtpSettings { public string Host { get; set; } }\n\n// Injection in Controller:\npublic class HomeController : Controller\n{\n    private readonly SmtpSettings _settings;\n    public HomeController(IOptions<SmtpSettings> options) => _settings = options.Value;\n}",
+          "syntax": "builder.Configuration[\u0022ConnectionStrings:DefaultConnection\u0022]",
+          "practicalExample": "// appsettings.json:\n// { \u0022Smtp\u0022: { \u0022Host\u0022: \u0022smtp.mail.com\u0022 } }\n\npublic class SmtpSettings { public string Host { get; set; } }\n\n// Injection in Controller:\npublic class HomeController : Controller\n{\n    private readonly SmtpSettings _settings;\n    public HomeController(IOptions\u003CSmtpSettings\u003E options) =\u003E _settings = options.Value;\n}",
           "commonMistakes": "Storing secrets in source code or mixing config sources inconsistently is risky."
         },
         {
           "id": "dotnetcore-logging",
-          "title": "Logging & Diagnostics",
-          "content": "ASP.NET Core has a built-in logging provider (`ILogger`) supporting console, debug, and event log destinations. It supports structured logging (storing parameters instead of just plain string logs), which makes querying logs in tools like Seq or Azure Application Insights incredibly simple. Developers can easily swap the default logger for libraries like Serilog.",
-          "example": "public class TodoController : ControllerBase\n{\n    private readonly ILogger<TodoController> _logger;\n    public TodoController(ILogger<TodoController> logger) => _logger = logger;\n\n    [HttpGet(\"{id}\")]\n    public IActionResult GetTodo(int id)\n    {\n        // Structured log: retains parameter placeholders\n        _logger.LogInformation(\"Fetching todo item with ID: {TodoId}\", id);\n        return Ok();\n    }\n}",
+          "title": "Logging \u0026 Diagnostics",
+          "content": "ASP.NET Core has a built-in logging provider (\u0060ILogger\u0060) supporting console, debug, and event log destinations. It supports structured logging (storing parameters instead of just plain string logs), which makes querying logs in tools like Seq or Azure Application Insights incredibly simple. Developers can easily swap the default logger for libraries like Serilog.",
+          "example": "public class TodoController : ControllerBase\n{\n    private readonly ILogger\u003CTodoController\u003E _logger;\n    public TodoController(ILogger\u003CTodoController\u003E logger) =\u003E _logger = logger;\n\n    [HttpGet(\u0022{id}\u0022)]\n    public IActionResult GetTodo(int id)\n    {\n        // Structured log: retains parameter placeholders\n        _logger.LogInformation(\u0022Fetching todo item with ID: {TodoId}\u0022, id);\n        return Ok();\n    }\n}",
           "questions": [
             {
               "id": "dotnetcore-log-q1",
@@ -956,15 +956,15 @@
           "why": "It helps you understand what your app is doing and troubleshoot failures.",
           "problem": "Without logs, finding the cause of a production issue can be very difficult.",
           "realWorldExample": "Writing an error message when a database query fails.",
-          "syntax": "logger.LogError(\"Request failed: {Message}\", ex.Message);",
-          "practicalExample": "public class TodoController : ControllerBase\n{\n    private readonly ILogger<TodoController> _logger;\n    public TodoController(ILogger<TodoController> logger) => _logger = logger;\n\n    [HttpGet(\"{id}\")]\n    public IActionResult GetTodo(int id)\n    {\n        // Structured log: retains parameter placeholders\n        _logger.LogInformation(\"Fetching todo item with ID: {TodoId}\", id);\n        return Ok();\n    }\n}",
+          "syntax": "logger.LogError(\u0022Request failed: {Message}\u0022, ex.Message);",
+          "practicalExample": "public class TodoController : ControllerBase\n{\n    private readonly ILogger\u003CTodoController\u003E _logger;\n    public TodoController(ILogger\u003CTodoController\u003E logger) =\u003E _logger = logger;\n\n    [HttpGet(\u0022{id}\u0022)]\n    public IActionResult GetTodo(int id)\n    {\n        // Structured log: retains parameter placeholders\n        _logger.LogInformation(\u0022Fetching todo item with ID: {TodoId}\u0022, id);\n        return Ok();\n    }\n}",
           "commonMistakes": "Logging too much detail or sensitive data can make logs hard to use and unsafe."
         },
         {
           "id": "dotnetcore-webdi",
           "title": "Web Request DI Lifetimes",
           "content": "In a web application, matching lifetimes with resource scope is vital. DbContext is typically registered as Scoped so that a single database transaction connection is shared throughout the entire duration of a single HTTP request, then disposed when the request concludes. In contrast, Transient resources have no sharing, and Singleton resources are shared globally across all parallel users.",
-          "example": "// Registration example in Program.cs:\nbuilder.Services.AddDbContext<AppDbContext>(options => \n    options.UseSqlServer(builder.Configuration.GetConnectionString(\"Default\")));",
+          "example": "// Registration example in Program.cs:\nbuilder.Services.AddDbContext\u003CAppDbContext\u003E(options =\u003E \n    options.UseSqlServer(builder.Configuration.GetConnectionString(\u0022Default\u0022)));",
           "questions": [
             {
               "id": "dotnetcore-wdi-q1",
@@ -981,14 +981,14 @@
           "why": "The right lifetime ensures services behave correctly and use memory efficiently.",
           "problem": "Using the wrong lifetime can lead to stale data or resource leaks.",
           "realWorldExample": "Using scoped services for database contexts and singleton services for shared helpers.",
-          "syntax": "services.AddScoped<MyDbContext>();",
-          "practicalExample": "// Registration example in Program.cs:\nbuilder.Services.AddDbContext<AppDbContext>(options => \n    options.UseSqlServer(builder.Configuration.GetConnectionString(\"Default\")));",
+          "syntax": "services.AddScoped\u003CMyDbContext\u003E();",
+          "practicalExample": "// Registration example in Program.cs:\nbuilder.Services.AddDbContext\u003CAppDbContext\u003E(options =\u003E \n    options.UseSqlServer(builder.Configuration.GetConnectionString(\u0022Default\u0022)));",
           "commonMistakes": "Using singleton for request-specific services or transient for heavy objects can cause problems."
         },
         {
           "id": "dotnetcore-host",
-          "title": "Host & Startup Configuration",
-          "content": "Modern .NET Core applications combine services configuration and request pipelines in a single file (`Program.cs`) using `WebApplicationBuilder`. The builder manages configuration and registers services to the DI container. Once built, the resulting `WebApplication` instance is used to configure middleware routes, endpoint mappings, and boot the application server.",
+          "title": "Host \u0026 Startup Configuration",
+          "content": "Modern .NET Core applications combine services configuration and request pipelines in a single file (\u0060Program.cs\u0060) using \u0060WebApplicationBuilder\u0060. The builder manages configuration and registers services to the DI container. Once built, the resulting \u0060WebApplication\u0060 instance is used to configure middleware routes, endpoint mappings, and boot the application server.",
           "example": "var builder = WebApplication.CreateBuilder(args);\n\n// 1. Add services to container\nbuilder.Services.AddControllers();\n\nvar app = builder.Build();\n\n// 2. Configure HTTP request pipeline\napp.UseHttpsRedirection();\napp.MapControllers();\n\napp.Run();",
           "questions": [
             {
@@ -1009,22 +1009,6 @@
           "syntax": "var builder = WebApplication.CreateBuilder(args);",
           "practicalExample": "var builder = WebApplication.CreateBuilder(args);\n\n// 1. Add services to container\nbuilder.Services.AddControllers();\n\nvar app = builder.Build();\n\n// 2. Configure HTTP request pipeline\napp.UseHttpsRedirection();\napp.MapControllers();\n\napp.Run();",
           "commonMistakes": "Altering host settings after the app is built or not adding required services can break startup."
-        },
-        {
-          "id": "programe.cs-file-1779867478538",
-          "title": "Programe.cs File",
-          "viewType": "detailed",
-          "content": "",
-          "example": "",
-          "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Program.cs in .NET Core</title>\n\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            line-height: 1.7;\n            margin: 40px;\n            background: #f5f5f5;\n            color: #333;\n        }\n\n        h1, h2, h3 {\n            color: #0d47a1;\n        }\n\n        pre {\n            background: #1e1e1e;\n            color: #fff;\n            padding: 15px;\n            border-radius: 8px;\n            overflow-x: auto;\n        }\n\n        code {\n            font-family: Consolas, monospace;\n        }\n\n        table {\n            width: 100%;\n            border-collapse: collapse;\n            margin-top: 20px;\n        }\n\n        table, th, td {\n            border: 1px solid #ccc;\n        }\n\n        th {\n            background: #1976d2;\n            color: white;\n            padding: 10px;\n        }\n\n        td {\n            padding: 10px;\n        }\n\n        .section {\n            background: white;\n            padding: 25px;\n            margin-bottom: 25px;\n            border-radius: 10px;\n            box-shadow: 0 0 5px rgba(0,0,0,0.1);\n        }\n    </style>\n</head>\n<body>\n\n    <h1>Proper Explanation of Program.cs in .NET Core</h1>\n\n    <div class=\"section\">\n        <p>\n            In modern .NET applications (.NET 6, 7, 8+),\n            <strong>Program.cs</strong> is the entry point of the application.\n        </p>\n\n        <p>\n            It is the first file executed when the application starts.\n        </p>\n    </div>\n\n    <div class=\"section\">\n        <h2>Basic Structure of Program.cs</h2>\n\n        <pre><code>\nvar builder = WebApplication.CreateBuilder(args);\n\n// Add services to the container\nbuilder.Services.AddControllers();\n\nvar app = builder.Build();\n\n// Configure middleware\napp.UseHttpsRedirection();\n\napp.UseAuthorization();\n\napp.MapControllers();\n\napp.Run();\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Step 1: Create Builder</h2>\n\n        <pre><code>\nvar builder = WebApplication.CreateBuilder(args);\n        </code></pre>\n\n        <p>\n            This line:\n        </p>\n\n        <ul>\n            <li>Creates application host</li>\n            <li>Loads configuration</li>\n            <li>Initializes dependency injection</li>\n            <li>Loads appsettings.json</li>\n            <li>Configures logging</li>\n        </ul>\n    </div>\n\n    <div class=\"section\">\n        <h2>Step 2: Register Services</h2>\n\n        <pre><code>\nbuilder.Services.AddControllers();\nbuilder.Services.AddScoped&lt;IUserService, UserService&gt;();\n        </code></pre>\n\n        <p>\n            Services are registered in Dependency Injection container.\n        </p>\n\n        <h3>Dependency Injection Example</h3>\n\n        <pre><code>\npublic class UserController : ControllerBase\n{\n    private readonly IUserService _service;\n\n    public UserController(IUserService service)\n    {\n        _service = service;\n    }\n}\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Step 3: Build Application</h2>\n\n        <pre><code>\nvar app = builder.Build();\n        </code></pre>\n\n        <p>\n            Converts all configurations into a runnable web application.\n        </p>\n    </div>\n\n    <div class=\"section\">\n        <h2>Step 4: Configure Middleware</h2>\n\n        <pre><code>\napp.UseHttpsRedirection();\napp.UseAuthentication();\napp.UseAuthorization();\n        </code></pre>\n\n        <p>\n            Middleware handles HTTP requests and responses.\n        </p>\n\n        <h3>Request Flow</h3>\n\n        <pre><code>\nRequest\n   ↓\nMiddleware 1\n   ↓\nMiddleware 2\n   ↓\nController\n   ↓\nResponse\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Step 5: Map Controllers</h2>\n\n        <pre><code>\napp.MapControllers();\n        </code></pre>\n\n        <p>\n            Connects controller routes with HTTP endpoints.\n        </p>\n\n        <h3>Example Controller</h3>\n\n        <pre><code>\n[ApiController]\n[Route(\"api/users\")]\npublic class UsersController : ControllerBase\n{\n    [HttpGet]\n    public string Get()\n    {\n        return \"Users List\";\n    }\n}\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Step 6: Run Application</h2>\n\n        <pre><code>\napp.Run();\n        </code></pre>\n\n        <p>\n            Starts the web server and listens for incoming requests.\n        </p>\n    </div>\n\n    <div class=\"section\">\n        <h2>Complete Real Example</h2>\n\n        <pre><code>\nusing Microsoft.EntityFrameworkCore;\nusing MyApp.Services;\nusing MyApp.Data;\n\nvar builder = WebApplication.CreateBuilder(args);\n\n// Add services\nbuilder.Services.AddControllers();\n\nbuilder.Services.AddDbContext&lt;AppDbContext&gt;(options =>\n    options.UseSqlServer(\n        builder.Configuration.GetConnectionString(\"DefaultConnection\")));\n\nbuilder.Services.AddScoped&lt;IUserService, UserService&gt;();\n\nbuilder.Services.AddSwaggerGen();\n\nvar app = builder.Build();\n\n// Middleware\nif (app.Environment.IsDevelopment())\n{\n    app.UseSwagger();\n    app.UseSwaggerUI();\n}\n\napp.UseHttpsRedirection();\n\napp.UseAuthentication();\n\napp.UseAuthorization();\n\napp.MapControllers();\n\napp.Run();\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Application Startup Flow</h2>\n\n        <pre><code>\nProgram Starts\n      ↓\nCreateBuilder()\n      ↓\nRegister Services\n      ↓\nBuild()\n      ↓\nConfigure Middleware\n      ↓\nMap Controllers\n      ↓\nRun()\n      ↓\nApplication Starts\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Old vs New Program.cs</h2>\n\n        <h3>Old (.NET Core 3.1)</h3>\n\n        <pre><code>\npublic class Program\n{\n    public static void Main(string[] args)\n    {\n        CreateHostBuilder(args).Build().Run();\n    }\n}\n        </code></pre>\n\n        <h3>New (.NET 6+)</h3>\n\n        <pre><code>\nvar builder = WebApplication.CreateBuilder(args);\n\nbuilder.Services.AddControllers();\n\nvar app = builder.Build();\n\napp.MapControllers();\n\napp.Run();\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Important Objects in Program.cs</h2>\n\n        <table>\n            <tr>\n                <th>Object</th>\n                <th>Purpose</th>\n            </tr>\n\n            <tr>\n                <td>builder</td>\n                <td>Configures application</td>\n            </tr>\n\n            <tr>\n                <td>builder.Services</td>\n                <td>Registers services</td>\n            </tr>\n\n            <tr>\n                <td>builder.Configuration</td>\n                <td>Reads configuration values</td>\n            </tr>\n\n            <tr>\n                <td>app</td>\n                <td>Configures middleware pipeline</td>\n            </tr>\n\n            <tr>\n                <td>app.Run()</td>\n                <td>Starts application</td>\n            </tr>\n        </table>\n    </div>\n\n    <div class=\"section\">\n        <h2>Minimal API Example</h2>\n\n        <pre><code>\nvar builder = WebApplication.CreateBuilder(args);\n\nvar app = builder.Build();\n\napp.MapGet(\"/\", () => \"Hello World\");\n\napp.Run();\n        </code></pre>\n    </div>\n\n    <div class=\"section\">\n        <h2>Summary</h2>\n\n        <table>\n            <tr>\n                <th>Responsibility</th>\n                <th>Description</th>\n            </tr>\n\n            <tr>\n                <td>App Initialization</td>\n                <td>Creates application</td>\n            </tr>\n\n            <tr>\n                <td>Dependency Injection</td>\n                <td>Registers services</td>\n            </tr>\n\n            <tr>\n                <td>Middleware Setup</td>\n                <td>Configures request pipeline</td>\n            </tr>\n\n            <tr>\n                <td>Routing</td>\n                <td>Maps endpoints</td>\n            </tr>\n\n            <tr>\n                <td>Application Startup</td>\n                <td>Runs web server</td>\n            </tr>\n        </table>\n    </div>\n\n</body>\n</html>",
-          "definition": "",
-          "why": "",
-          "problem": "",
-          "realWorldExample": "",
-          "syntax": "",
-          "practicalExample": "",
-          "commonMistakes": "",
-          "questions": []
         }
       ]
     },
@@ -1075,8 +1059,8 @@
         {
           "id": "api-controllers",
           "title": "ASP.NET Core Controllers",
-          "content": "Controllers manage HTTP API endpoints by inheriting from `ControllerBase` and applying `[ApiController]` and `[Route]` attributes. Endpoints use action methods decorated with HTTP action attributes (`[HttpGet]`, `[HttpPost]`, etc.) to process incoming parameters and return HTTP status codes via `ActionResult` models.",
-          "example": "[ApiController]\n[Route(\"api/[controller]\")]\npublic class ProductsController : ControllerBase\n{\n    [HttpGet(\"{id}\")]\n    public IActionResult GetProduct(int id)\n    {\n        var product = new { Id = id, Name = \"Keyboard\" };\n        if (product == null) return NotFound();\n        return Ok(product); // Returns HTTP 200 OK\n    }\n}",
+          "content": "Controllers manage HTTP API endpoints by inheriting from \u0060ControllerBase\u0060 and applying \u0060[ApiController]\u0060 and \u0060[Route]\u0060 attributes. Endpoints use action methods decorated with HTTP action attributes (\u0060[HttpGet]\u0060, \u0060[HttpPost]\u0060, etc.) to process incoming parameters and return HTTP status codes via \u0060ActionResult\u0060 models.",
+          "example": "[ApiController]\n[Route(\u0022api/[controller]\u0022)]\npublic class ProductsController : ControllerBase\n{\n    [HttpGet(\u0022{id}\u0022)]\n    public IActionResult GetProduct(int id)\n    {\n        var product = new { Id = id, Name = \u0022Keyboard\u0022 };\n        if (product == null) return NotFound();\n        return Ok(product); // Returns HTTP 200 OK\n    }\n}",
           "questions": [
             {
               "id": "api-ctrl-q1",
@@ -1093,15 +1077,15 @@
           "why": "They organize endpoints into reusable classes and connect routes to logic.",
           "problem": "Without controllers, routing and request handling would be scattered and harder to maintain.",
           "realWorldExample": "A ProductsController with actions for list, details, create, update, and delete.",
-          "syntax": "[ApiController]\n[Route(\"api/[controller]\")]",
-          "practicalExample": "[ApiController]\n[Route(\"api/[controller]\")]\npublic class ProductsController : ControllerBase\n{\n    [HttpGet(\"{id}\")]\n    public IActionResult GetProduct(int id)\n    {\n        var product = new { Id = id, Name = \"Keyboard\" };\n        if (product == null) return NotFound();\n        return Ok(product); // Returns HTTP 200 OK\n    }\n}",
+          "syntax": "[ApiController]\n[Route(\u0022api/[controller]\u0022)]",
+          "practicalExample": "[ApiController]\n[Route(\u0022api/[controller]\u0022)]\npublic class ProductsController : ControllerBase\n{\n    [HttpGet(\u0022{id}\u0022)]\n    public IActionResult GetProduct(int id)\n    {\n        var product = new { Id = id, Name = \u0022Keyboard\u0022 };\n        if (product == null) return NotFound();\n        return Ok(product); // Returns HTTP 200 OK\n    }\n}",
           "commonMistakes": "Putting too much business logic in controllers instead of services makes them hard to test."
         },
         {
           "id": "api-minimal",
           "title": "Minimal APIs",
           "content": "Minimal APIs are a lightweight design option in ASP.NET Core. They allow you to create REST endpoints directly in Program.cs with minimal structure, avoiding the boilerplate of controller files. They leverage performance optimizations and are highly recommended for microservices or simple API layouts.",
-          "example": "var builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\n\n// Direct endpoint mapping without controller classes:\napp.MapGet(\"/api/greet/{name}\", (string name) => \n    new { Message = $\"Hello, {name}!\" });\n\napp.Run();",
+          "example": "var builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\n\n// Direct endpoint mapping without controller classes:\napp.MapGet(\u0022/api/greet/{name}\u0022, (string name) =\u003E \n    new { Message = $\u0022Hello, {name}!\u0022 });\n\napp.Run();",
           "questions": [
             {
               "id": "api-min-q1",
@@ -1118,14 +1102,14 @@
           "why": "They are faster to write for simple APIs and keep the code small.",
           "problem": "Without minimal APIs, small services may need more ceremony to start quickly.",
           "realWorldExample": "Example: A food delivery platform may use Minimal APIs for lightweight services such as order tracking or notifications.",
-          "syntax": "app.MapGet(\"/api/items\", () => Results.Ok(items));",
-          "practicalExample": "var builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\n\n// Direct endpoint mapping without controller classes:\napp.MapGet(\"/api/greet/{name}\", (string name) => \n    new { Message = $\"Hello, {name}!\" });\n\napp.Run();",
+          "syntax": "app.MapGet(\u0022/api/items\u0022, () =\u003E Results.Ok(items));",
+          "practicalExample": "var builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\n\n// Direct endpoint mapping without controller classes:\napp.MapGet(\u0022/api/greet/{name}\u0022, (string name) =\u003E \n    new { Message = $\u0022Hello, {name}!\u0022 });\n\napp.Run();",
           "commonMistakes": "Using minimal APIs for very complex routes or business logic can make code harder to structure."
         },
         {
           "id": "api-serialization",
-          "title": "Content Negotiation & Serialization",
-          "content": "Content negotiation is the process of selecting the best data representation format for a client. Web API returns JSON by default using System.Text.Json. However, if a client requests XML via the `Accept` request header (`application/xml`), ASP.NET Core can serialize the output to XML if the server has formatters registered in Program.cs.",
+          "title": "Content Negotiation \u0026 Serialization",
+          "content": "Content negotiation is the process of selecting the best data representation format for a client. Web API returns JSON by default using System.Text.Json. However, if a client requests XML via the \u0060Accept\u0060 request header (\u0060application/xml\u0060), ASP.NET Core can serialize the output to XML if the server has formatters registered in Program.cs.",
           "example": "// Enabling XML serialization in Program.cs:\nbuilder.Services.AddControllers()\n    .AddXmlSerializerFormatters();",
           "questions": [
             {
@@ -1149,14 +1133,14 @@
         },
         {
           "id": "api-security",
-          "title": "API Security (JWT & CORS)",
+          "title": "API Security (JWT \u0026 CORS)",
           "content": "Securing APIs involves Authentication (identifying who is calling) and Authorization (checking what they can access). Standard Web APIs use JSON Web Tokens (JWT). The API validates the JWT signature on incoming requests. Cross-Origin Resource Sharing (CORS) must be configured to specify which web client origins are allowed to interact with the API endpoints.",
-          "example": "// Enforcing authorization on a controller:\n[Authorize(Roles = \"Admin\")]\n[HttpPost]\npublic IActionResult SaveData([FromBody] DataDto data) => Ok();",
+          "example": "// Enforcing authorization on a controller:\n[Authorize(Roles = \u0022Admin\u0022)]\n[HttpPost]\npublic IActionResult SaveData([FromBody] DataDto data) =\u003E Ok();",
           "questions": [
             {
               "id": "api-sec-q1",
               "question": "How does JWT Bearer authentication work?",
-              "answer": "The client sends a token in the Authorization header (Bearer <token>). The server verifies the token signature and extracts user claims."
+              "answer": "The client sends a token in the Authorization header (Bearer \u003Ctoken\u003E). The server verifies the token signature and extracts user claims."
             },
             {
               "id": "api-sec-q2",
@@ -1169,14 +1153,14 @@
           "problem": "Without security, anyone could call your API and change data or view secrets.",
           "realWorldExample": "Example: Banking and e-commerce applications use JWT authentication to securely identify logged-in users.",
           "syntax": "services.AddAuthentication().AddJwtBearer(...);",
-          "practicalExample": "// Enforcing authorization on a controller:\n[Authorize(Roles = \"Admin\")]\n[HttpPost]\npublic IActionResult SaveData([FromBody] DataDto data) => Ok();",
+          "practicalExample": "// Enforcing authorization on a controller:\n[Authorize(Roles = \u0022Admin\u0022)]\n[HttpPost]\npublic IActionResult SaveData([FromBody] DataDto data) =\u003E Ok();",
           "commonMistakes": "Allowing all origins in CORS or storing tokens insecurely leaves APIs open to attack."
         },
         {
           "id": "api-docs",
-          "title": "Versioning & Documentation",
-          "content": "Documenting APIs with Swagger (OpenAPI) allows developers to explore endpoints and test API operations in a browser UI. Versioning is essential to introduce API changes without breaking existing clients. APIs can be versioned via routes (e.g. `/v1/products`), query string parameters (`/products?api-version=1.0`), or HTTP headers.",
-          "example": "// Routing-based API versioning:\n[ApiVersion(\"1.0\")]\n[Route(\"api/v{version:apiVersion}/products\")]\npublic class ProductsV1Controller : ControllerBase { }",
+          "title": "Versioning \u0026 Documentation",
+          "content": "Documenting APIs with Swagger (OpenAPI) allows developers to explore endpoints and test API operations in a browser UI. Versioning is essential to introduce API changes without breaking existing clients. APIs can be versioned via routes (e.g. \u0060/v1/products\u0060), query string parameters (\u0060/products?api-version=1.0\u0060), or HTTP headers.",
+          "example": "// Routing-based API versioning:\n[ApiVersion(\u00221.0\u0022)]\n[Route(\u0022api/v{version:apiVersion}/products\u0022)]\npublic class ProductsV1Controller : ControllerBase { }",
           "questions": [
             {
               "id": "api-doc-q1",
@@ -1194,7 +1178,7 @@
           "problem": "Without docs, developers waste time guessing how your API works.",
           "realWorldExample": "Swagger UI that shows available endpoints and example requests.",
           "syntax": "app.UseSwagger(); app.UseSwaggerUI();",
-          "practicalExample": "// Routing-based API versioning:\n[ApiVersion(\"1.0\")]\n[Route(\"api/v{version:apiVersion}/products\")]\npublic class ProductsV1Controller : ControllerBase { }",
+          "practicalExample": "// Routing-based API versioning:\n[ApiVersion(\u00221.0\u0022)]\n[Route(\u0022api/v{version:apiVersion}/products\u0022)]\npublic class ProductsV1Controller : ControllerBase { }",
           "commonMistakes": "Leaving docs out of sync with the actual API leads to confusion."
         }
       ]
