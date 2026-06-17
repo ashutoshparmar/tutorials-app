@@ -265,11 +265,29 @@ input:focus, textarea:focus, select:focus {
   gap: 1rem;
 }
 
-.course-tabs {
+/* Scrollable Desktop Container with Chevrons */
+.course-tabs-desktop-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.course-tabs-desktop-container .course-tabs {
+  flex-grow: 1;
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding-bottom: 0.15rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scroll-behavior: smooth;
+  padding: 0.2rem 0;
+}
+
+.course-tabs-desktop-container .course-tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 
 .course-tab-btn {
@@ -280,6 +298,7 @@ input:focus, textarea:focus, select:focus {
   font-weight: 500;
   border: 1px solid var(--border-color);
   white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .course-tab-btn.active {
@@ -291,6 +310,168 @@ input:focus, textarea:focus, select:focus {
 
 .course-tab-btn:hover:not(.active) {
   background-color: var(--bg-accent);
+}
+
+/* Scroll Fade Indicator Overlays */
+.scroll-fade-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  background: linear-gradient(to right, var(--bg-secondary), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.scroll-fade-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  background: linear-gradient(to left, var(--bg-secondary), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Chevron Buttons */
+.scroll-chevron-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: 3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scroll-chevron-btn:hover {
+  background-color: var(--brand-primary);
+  color: var(--text-on-brand);
+  border-color: var(--brand-primary);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.scroll-chevron-btn.left {
+  left: 0.25rem;
+}
+
+.scroll-chevron-btn.right {
+  right: 0.25rem;
+}
+
+/* Responsive Helpers */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+/* Mobile Dropdown Styling */
+.course-dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.course-dropdown-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.course-dropdown-btn strong {
+  color: var(--brand-primary);
+}
+
+.dropdown-chevron {
+  display: inline-flex;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-chevron.open {
+  transform: rotate(180deg);
+}
+
+.course-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 50;
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.25rem;
+  animation: slideDown 0.2s ease;
+}
+
+.course-dropdown-item {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.course-dropdown-item:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.course-dropdown-item.active {
+  background-color: var(--brand-primary);
+  color: var(--text-on-brand);
+}
+
+.admin-fields-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.mobile-admin-toggle {
+  display: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Admin course actions inside tabs bar */
@@ -927,6 +1108,55 @@ input:focus, textarea:focus, select:focus {
     padding: 1rem;
     flex-direction: column;
     align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .mobile-only {
+    display: block !important;
+  }
+  
+  .course-dropdown-container.mobile-only {
+    display: block !important;
+  }
+  
+  .mobile-admin-toggle {
+    display: block !important;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+  
+  .admin-fields-wrapper {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border-color);
+  }
+  
+  .admin-fields-wrapper.mobile-open {
+    display: flex;
+  }
+  
+  .admin-fields-wrapper .input-group,
+  .admin-fields-wrapper .action-group {
+    width: 100%;
+    display: flex;
+    gap: 0.35rem;
+  }
+  
+  .admin-fields-wrapper .input-group input {
+    flex-grow: 1;
+    max-width: none;
+  }
+  
+  .admin-fields-wrapper button {
+    flex-grow: 1;
   }
   
   .hamburger-button {
@@ -942,10 +1172,7 @@ input:focus, textarea:focus, select:focus {
   
   .add-course-inline {
     justify-content: stretch;
-  }
-  .input-group input {
-    flex-grow: 1;
-    max-width: none;
+    width: 100%;
   }
 }
 
