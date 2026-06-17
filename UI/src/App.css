@@ -18,6 +18,7 @@
   --brand-secondary: #7c3aed;    /* Violet */
   --brand-success: #10b981;      /* Emerald */
   --brand-danger: #ef4444;       /* Rose */
+  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --heading-color: #0d47a1;
   
@@ -668,6 +669,115 @@ input:focus, textarea:focus, select:focus {
 .content-panel {
   min-height: calc(100vh - 180px);
   overflow-y: auto;
+}
+
+/* Reusable styling for HTML content injected from public/data/db.json */
+/* These classes replace inline styles in embedded HTML fragments. */
+.detailed-container {
+  padding: 24px;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+}
+
+.detailed-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.section-tag {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.intro-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.highlight-box {
+  background-color: var(--bg-tertiary);
+  border-left: 4px solid var(--brand-primary);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 28px;
+}
+
+.section-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.info-list {
+  margin-left: 20px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.section-gap {
+  margin-bottom: 28px;
+}
+
+.code-panel {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background-color: #1e293b;
+}
+
+.code-label {
+  background-color: #0f172a;
+  color: #94a3b8;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-bottom: 1px solid #1e293b;
+  letter-spacing: 0.05em;
+}
+
+.code-block {
+  padding: 16px;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.code-text {
+  color: #f1f5f9;
+  font-family: Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.alert-box {
+  background-color: rgba(239, 68, 68, 0.08);
+  border-left: 4px solid var(--brand-danger);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.alert-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-danger);
+  margin-bottom: 8px;
+}
+
+.alert-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
 }
 
 .detailed-topic-view {
