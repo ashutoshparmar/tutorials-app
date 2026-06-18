@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Course } from '../types';
 
 interface TopicSidebarProps {
@@ -44,24 +44,73 @@ export const TopicSidebar: React.FC<TopicSidebarProps> = ({
   setNewTopicViewType,
   addTopic
 }) => {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 861px)');
+    const handleMediaChange = (event: MediaQueryList | MediaQueryListEvent) => {
+      setIsDesktop(event.matches);
+    };
+
+    handleMediaChange(mediaQuery);
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaChange);
+    };
+  }, []);
+
+  const displayTopics = showTopics || isDesktop;
+
+  const handleSelectTopic = (id: string) => {
+    setSelectedTopicId(id);
+
+      // Delay scrolling/focusing so the content has a chance to render
+    setTimeout(() => {
+      const content = document.querySelector<HTMLElement>('.content-panel');
+      if (content) {
+        try {
+          // Prefer scrolling the window so the sticky course-bar remains visible.
+          const rect = content.getBoundingClientRect();
+          const rootStyle = getComputedStyle(document.documentElement);
+          const courseBarVal = rootStyle.getPropertyValue('--course-bar-height') || '56px';
+          const courseBarPx = parseInt(courseBarVal.trim(), 10) || 56;
+          const target = window.scrollY + rect.top - courseBarPx;
+          window.scrollTo({ top: target, behavior: 'smooth' });
+          // Focus content panel for accessibility
+          content.focus?.();
+        } catch (e) {
+          try { content.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 80);
+
+    // On mobile, collapse the sidebar after selecting a topic
+    if (!isDesktop) {
+      setShowTopics(false);
+    }
+  };
+
   return (
     <aside className="panel nav-panel">
       <div className="nav-header">
         <h2>Topics List</h2>
-        <button className="hamburger-button" onClick={() => setShowTopics(!showTopics)}>
+        <button className="hamburger-button mobile-only" onClick={() => setShowTopics(!showTopics)}>
           <span className="hamburger-icon">{showTopics ? '✕' : '☰'}</span>
           <span>{showTopics ? 'Hide' : 'Show'}</span>
         </button>
       </div>
 
       {selectedCourse?.topics.length ? (
-        showTopics ? (
+        displayTopics ? (
           <ul className="topics-list">
             {selectedCourse.topics.map((topic, index) => (
               <li key={topic.id} className={`topic-item ${topic.id === selectedTopicId ? 'active' : ''}`}>
                 <button
                   className="topic-btn"
-                  onClick={() => setSelectedTopicId(topic.id)}
+                  onClick={() => handleSelectTopic(topic.id)}
                 >
                   📄 {topic.title}
                 </button>

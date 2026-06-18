@@ -43,7 +43,7 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
   const commonMistakes = selectedTopic?.commonMistakes ?? '';
 
   return (
-    <section className="panel content-panel">
+    <section className="panel content-panel" tabIndex={-1}>
       {selectedTopic ? (
         <>
           <div className="content-header">

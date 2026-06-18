@@ -42,6 +42,7 @@
   --table-header-bg:#1976d2;
   --table-header-text-color:white;           
   --table-header-border-bottom:auto;
+  --course-bar-height: 56px;
 
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -140,9 +141,12 @@ input:focus, textarea:focus, select:focus {
 
 /* Top bar styles */
 .top-bar {
+  position: static;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   padding: 1rem 2rem;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
@@ -154,6 +158,28 @@ input:focus, textarea:focus, select:focus {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
+}
+
+.route-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 0;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.login-panel {
+  min-width: 0;
 }
 
 .brand-logo {
@@ -254,10 +280,14 @@ input:focus, textarea:focus, select:focus {
 
 /* Course selection bar */
 .course-bar {
+  position: sticky;
+  top: 0;
+  height: var(--course-bar-height);
+  z-index: 18;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.85rem 2rem;
+  justify-content: space-between;
+  padding: 0 1rem;
   background: var(--glass-bg);
   border-bottom: 1px solid var(--border-color);
   backdrop-filter: blur(16px);
@@ -535,6 +565,7 @@ input:focus, textarea:focus, select:focus {
   gap: 1.5rem;
   padding: 1.5rem 2rem;
   flex-grow: 1;
+  align-items: start;
 }
 
 .panel {
@@ -550,8 +581,20 @@ input:focus, textarea:focus, select:focus {
 
 /* Topics list inside Sidebar */
 .nav-panel {
-  max-height: calc(100vh - 180px);
+  max-height: calc(100vh - var(--course-bar-height));
+  min-height: calc(100vh - var(--course-bar-height));
   overflow-y: auto;
+  position: sticky;
+  top: var(--course-bar-height);
+  align-self: start;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .nav-header h2 {
@@ -669,6 +712,11 @@ input:focus, textarea:focus, select:focus {
 .content-panel {
   min-height: calc(100vh - 180px);
   overflow-y: auto;
+}
+
+.content-panel:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.08);
 }
 
 /* Reusable styling for HTML content injected from public/data/db.json */
@@ -1219,6 +1267,8 @@ input:focus, textarea:focus, select:focus {
     flex-direction: column;
     align-items: stretch;
     gap: 0.75rem;
+    position: static;
+    top: auto;
   }
   
   .desktop-only {
@@ -1229,6 +1279,13 @@ input:focus, textarea:focus, select:focus {
     display: block !important;
   }
   
+  .nav-panel {
+    position: static;
+    max-height: none;
+    min-height: auto;
+    top: auto;
+  }
+  
   .course-dropdown-container.mobile-only {
     display: block !important;
   }
@@ -1237,6 +1294,21 @@ input:focus, textarea:focus, select:focus {
     display: block !important;
     width: 100%;
     margin-bottom: 0.25rem;
+  }
+  
+  .hamburger-button {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+  }
+
+  .desktop-only {
+    display: none !important;
   }
   
   .admin-fields-wrapper {
