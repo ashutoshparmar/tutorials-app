@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Course, Database, User } from './types';
 import { Header } from './components/Header';
 import { AdminSignIn } from './components/AdminSignIn';
+import { GoogleDocConverterAdmin } from './components/GoogleDocConverterAdmin';
 import { CourseTabs } from './components/CourseTabs';
 import { TopicSidebar } from './components/TopicSidebar';
 import { ContentArea } from './components/ContentArea';
@@ -71,7 +72,7 @@ function App() {
   const [importError, setImportError] = useState('');
   const [route, setRoute] = useState(() => {
     const hash = window.location.hash.slice(1);
-    return hash === '/admin' ? '/admin' : '/';
+    return hash === '/admin' || hash === '/converter' ? hash : '/';
   });
   const [showTopics, setShowTopics] = useState(true);
 
@@ -119,7 +120,7 @@ function App() {
   }, []);
 
   const navigateTo = (path: string) => {
-    const normalized = path === '/admin' ? '/admin' : '/';
+    const normalized = path === '/admin' || path === '/converter' ? path : '/';
     if (window.location.hash.slice(1) !== normalized) {
       window.location.hash = normalized;
     } else {
@@ -147,10 +148,11 @@ function App() {
 
   const isAdmin = activeUser?.role === 'admin';
   const isAdminRoute = route === '/admin';
+  const isConverterRoute = route === '/converter';
   const canEdit = isAdminRoute && isAdmin;
 
   useEffect(() => {
-    if (route === '/admin' && activeUser && !isAdmin) {
+    if ((route === '/admin' || route === '/converter') && activeUser && !isAdmin) {
       navigateTo('/');
     }
   }, [route, activeUser, isAdmin]);
@@ -437,6 +439,45 @@ function App() {
         handleLogin={handleLogin}
         navigateTo={navigateTo}
       />
+    );
+  }
+
+  // If Converter route and not signed in
+  if (isConverterRoute && !activeUser) {
+    return (
+      <AdminSignIn
+        users={db.users}
+        loginUserId={loginUserId}
+        setLoginUserId={setLoginUserId}
+        loginPassword={loginPassword}
+        setLoginPassword={setLoginPassword}
+        loginError={loginError}
+        handleLogin={handleLogin}
+        navigateTo={navigateTo}
+      />
+    );
+  }
+
+  // If Converter route and user is admin
+  if (isConverterRoute && isAdmin) {
+    return (
+      <div className="app-shell">
+        <Header
+          activeUser={activeUser}
+          isAdmin={isAdmin}
+          route={route}
+          navigateTo={navigateTo}
+          onSignOut={() => {
+            setActiveUser(null);
+            setLoginPassword('');
+            setLoginError('');
+            navigateTo('/');
+          }}
+          isDarkMode={isDarkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
+        <GoogleDocConverterAdmin navigateTo={navigateTo} />
+      </div>
     );
   }
 

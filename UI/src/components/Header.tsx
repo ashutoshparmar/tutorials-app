@@ -41,6 +41,13 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Admin Dashboard
           </button>
+          <button 
+            className={route === '/converter' ? 'active' : ''} 
+            onClick={() => navigateTo('/converter')}
+            title="Convert Google Docs to Website HTML"
+          >
+            📝 Converter
+          </button>
         </div>
       )}
 
